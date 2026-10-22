@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="07CF654F-79D2-6DD3-D0D9-8559F5B96991">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:13:39 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

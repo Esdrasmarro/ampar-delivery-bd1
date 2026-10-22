@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="F75D5222-6129-F165-6F83-0AF43A9A1B4C" containerWithKeyObject="C708CAA9-9504-A682-BEF9-97DDF42C0D74" localFKIndex="5AF492BF-9233-9234-278C-20ED3D52DA1C" name="FK_ROL_MENU_MENU">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>5DB345D3-B65A-910A-7495-BCA984B07A3F</importedID>
+<referredTableLongName>menu</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4893C99F-5682-4B5B-F8F7-F2E15F478C79</referredTableID>
+<keyObject>8079C427-2507-648D-06C1-30F0B05F4BFD</keyObject>
+<referredKeyID>8079C427-2507-648D-06C1-30F0B05F4BFD</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_menu</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

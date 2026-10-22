@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="tipo_vehiculo" directorySegmentName="seg_0" id="16559C62-3A37-FD4E-3B66-EB5CD7979D47">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="nombre" id="024A3A0D-E7F0-0491-BCF5-046075B7F8DE">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="estado" id="67377F00-BA8F-2C9B-29EF-B5FF86D5BD84">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<defaultValue>&apos;A&apos;</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="id_tipo_vehiculo" id="E9A6A8DB-36EC-CC59-9227-CFD2A84EFDB0">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_TIPO_VEH" id="2E191B97-BF17-7E06-A5D5-3DCF3CDAE994">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.storage.oracle.TableCheckConstraintOracle">
+<TableCheckConstraint name="CH_TIPO_VEH_ESTADO" id="8C966EE6-21D8-60E0-9C56-0F4E06BD0842">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<nameChanged>true</nameChanged>
+</TableCheckConstraint>
+</tableCheckConstraints>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="UK_TIPO_VEH_NOMBRE" id="1A6FDC40-BB8A-866A-D9DE-DB2A8F6DD483">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev20c>

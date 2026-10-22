@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_PAGO_PEDIDO" directorySegmentName="seg_0" id="9405DF8A-24D3-9512-B3A9-2409689E176B">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>24F695B9-A5C9-34F4-7C29-309FE40D7011</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<sourcePk>978B386A-976A-9EFE-EC5A-D9C0F37CE78D</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>1CEFFCF4-C199-F480-8849-1C8DC14E7A5D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F4158BB3-0590-7A2C-B63E-95DEC5B472F3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

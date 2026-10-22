@@ -1,0 +1,222 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6FECCAD3-5061-6F22-AB81-DB5A033E4611" name="usuario">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>FFE00D16-7AB6-1AAC-8822-C18F72A000BD</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id usuario" id="6499076B-EDDD-5469-4FB6-97582D52CB74">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>7C2C5BE8-BE01-A0AE-DCA5-663E1C3DCA1E</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id rol" id="89F459B8-F935-F392-E588-3E007D48E4FD">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>3354D0FC-7F1F-408F-8616-D406A2C673E1</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<referedAttribute>F2DF0A59-0685-D2B0-6C2C-B4DCA5C8709B</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre usuario" id="2BFDF022-299F-F07B-6E3F-7813332B505E">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>856304FD-AB61-A1ED-AF9C-E91235755542</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>2A7E9E16-42A6-3AF2-A45E-4E5B1CE6C177</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="clave" id="FAEEE47E-06AE-FF45-FCC5-F8989EFA780D">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>8003B15B-A024-3B30-C6AD-A9B43B0097EC</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>5D15F4FB-4BE3-8D5A-20D8-6337DB09735F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre completo" id="01F68786-D996-08A1-A0C3-3CE7BF00D416">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>884C546D-D027-0FFF-B9CB-F575F665AE04</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9D2E5054-4759-5C06-1FBD-50586BB7B378</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id cliente" id="C4529C84-5E31-7DAD-AA3B-F8D2E1E8ECC9">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>68CF20FE-0DA4-8448-8AD0-789EF4D703AF</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>6E6E8927-35C5-E695-9E68-B3F83A7056ED</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id negocio" id="2FF58273-7F3B-2614-DCE6-C215AB298726">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>8E329B1F-D143-D1CB-3A1F-7BFCF4F4CE0A</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>A0E73062-8AAE-A5E0-1524-8F5FB011167E</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id repartidor" id="C1C99D6C-ABE8-0C17-B244-461FDEAFCB2E">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>0FCA6AAC-51F5-8174-ABD0-06612301D2AB</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>A4CC67E1-A7A9-0F95-6096-2B959577963E</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha creacion" id="7DDFF506-69A9-B725-CE3A-2E882B44771C">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>9C04BBF2-D9BF-6E71-3634-F677E247EA8C</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>30A33551-A9E6-E56D-A22A-B711E0FD7490</domain>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="estado" id="615B51F1-2908-8C8F-FA6C-F4CAC5F162BC">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>7E8FADC3-1618-2AE8-D62B-CD264816D7A5</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>84752B5E-7C0F-A171-13A5-3952763E6D43</domain>
+<defaultValue>&apos;A&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="78F46D9A-3515-74B7-6B41-6B1F37C8894F" name="PK USUARIO">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>42168AC9-0093-3BEA-CFE4-9511C9EF2392</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6499076B-EDDD-5469-4FB6-97582D52CB74</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="42466292-D7A4-BD0B-323E-B283BD41B377" name="UK USUARIO NOMBRE">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>66BE8D9E-01FC-33C3-967A-6DC62034E5CB</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>2BFDF022-299F-F07B-6E3F-7813332B505E</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="9FC4566F-3F8A-D8EB-4D54-6CB772A358D7" name="UK USUARIO CLIENTE">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>D05BC20E-D48E-3618-F748-278D1F04297A</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>C4529C84-5E31-7DAD-AA3B-F8D2E1E8ECC9</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="FE155B8E-DDD0-19E1-0F15-CCD82435BD75" name="UK USUARIO NEGOCIO">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>88EDFAA8-1B09-7C45-C417-B37DB580A4FD</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>2FF58273-7F3B-2614-DCE6-C215AB298726</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="E1214B37-16B0-EF1F-6287-ADA21580171D" name="UK USUARIO REPARTIDOR">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>5804B821-671E-BBBB-D56E-C93F1434C9BA</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>C1C99D6C-ABE8-0C17-B244-461FDEAFCB2E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

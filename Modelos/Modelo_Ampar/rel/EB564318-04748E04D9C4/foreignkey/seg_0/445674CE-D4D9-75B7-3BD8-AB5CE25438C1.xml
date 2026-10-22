@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="445674CE-D4D9-75B7-3BD8-AB5CE25438C1" containerWithKeyObject="FFE00D16-7AB6-1AAC-8822-C18F72A000BD" localFKIndex="C913327E-6624-2B44-2633-E017425C2189" name="FK_USUARIO_ROL">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>53A3E430-3E6B-F1A5-7BE0-BD08EE99E681</importedID>
+<referredTableLongName>rol</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>BE8206FE-6887-DE2C-8BF3-C181581D8215</referredTableID>
+<keyObject>1A455364-BBB2-EC99-F900-2A1359558893</keyObject>
+<referredKeyID>1A455364-BBB2-EC99-F900-2A1359558893</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_rol</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

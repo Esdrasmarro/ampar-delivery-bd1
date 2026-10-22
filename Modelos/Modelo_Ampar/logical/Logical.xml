@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="83B999FF-CEBF-7A92-9E72-2D63B2702419" mainViewID="E96700CF-8B68-62AC-7163-B9379A533C76">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:13:39 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

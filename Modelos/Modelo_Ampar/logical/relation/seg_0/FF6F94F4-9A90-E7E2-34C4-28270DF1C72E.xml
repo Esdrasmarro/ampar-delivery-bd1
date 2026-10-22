@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_HORARIO_NEGOCIO" directorySegmentName="seg_0" id="FF6F94F4-9A90-E7E2-34C4-28270DF1C72E">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>B3448860-38AD-F626-49EC-343DB603B13D</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<sourcePk>D424F3F9-B805-ECDF-F1F7-87748D5F8E53</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>2130B1A7-D204-A65F-F069-496BEC6B4C35</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>21D7D9C2-CEBC-4195-D477-9043DE6F6F7C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

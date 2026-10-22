@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_HISTORIAL_PEDIDO" directorySegmentName="seg_0" id="5BC522E6-0318-8913-25CF-2DA0B8C98B16">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>04441170-4627-C67C-A054-5BD49609C654</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<sourcePk>978B386A-976A-9EFE-EC5A-D9C0F37CE78D</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>1CEFFCF4-C199-F480-8849-1C8DC14E7A5D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>ED9D0913-7713-D9FE-2251-58867D369E93</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

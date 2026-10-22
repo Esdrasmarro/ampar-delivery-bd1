@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="24E86B75-D7ED-DBD8-C0B0-25A9DE75577A" containerWithKeyObject="3318C1C6-76A0-2CAF-93C5-5A0A270AA9CF" localFKIndex="753485A4-7A50-B6C8-B2FE-8701DFC90FBE" name="FK_NEGOCIO_ZONA">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>008CB427-9514-7C6A-AA8B-A52C57154B67</importedID>
+<referredTableLongName>zona</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>71EA2A4A-A683-DA5B-3B9D-EDF17756FFEB</referredTableID>
+<keyObject>D9C6FD8A-8840-71BA-0BAE-BE4F415D6980</keyObject>
+<referredKeyID>D9C6FD8A-8840-71BA-0BAE-BE4F415D6980</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_zona</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

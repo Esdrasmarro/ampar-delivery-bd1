@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_MUNI_DEPTO" directorySegmentName="seg_0" id="1F1D9268-FEAF-2E47-9B7C-3444AAECF354">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>EDC56ABC-5B52-B978-D6A6-54888390357B</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<sourcePk>E44F84C5-E860-77A6-8989-BCBE4D45082E</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>09096BA1-0B73-E95B-CAEA-EF374D90637D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>07DF5736-9D70-31FE-86A5-C053BE9F3D87</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,128 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="negocio" directorySegmentName="seg_0" id="3318C1C6-76A0-2CAF-93C5-5A0A270AA9CF">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="fecha_registro" id="00DA6F90-C1AA-13EF-FC1E-3C929AB17B9D">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<defaultValue>SYSDATE</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="telefono" id="0D558786-7B7D-9984-114D-CB49A96E8AA9">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="latitud" id="176AB350-2E03-1F0C-C2B7-52F2FD6867EF">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="propietario" id="54229056-E78C-C449-4A5A-229468205728">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="nit" id="5BA7D681-95C6-F3C6-4BF7-C2E7934939D3">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="estado" id="66DF71D2-4333-FE54-E58E-60032D643003">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<defaultValue>&apos;PENDIENTE&apos;</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="nombre" id="6F8A2A04-0BBB-9EA0-7EB8-4D17510277B7">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="id_tipo_negocio" id="831E762A-6608-6D1E-F1AD-F4C8FB0507E2">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="longitud" id="C1E1F9CC-8B4F-A01A-8567-32B6455C4CBF">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="direccion" id="C7171AFE-3764-6EF2-CB14-BA5572531A2F">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="radio_cobertura_km" id="E2EEAFD4-CAB2-5B30-3C1D-1CF59AF269B0">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<defaultValue>10</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="id_negocio" id="E648C9CF-EB9B-7892-1273-2A4F587127DF">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="id_zona" id="E6A9F22A-DB45-018C-1BC1-0B6DAEC009B5">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="correo" id="F2CEFE58-5E04-9982-0749-F4B524F1E706">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_NEGOCIO_TIPO_NEG" id="099C92CF-F4C9-E1E3-7AB4-DF766194F573">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_NEGOCIO_ZONA" id="753485A4-7A50-B6C8-B2FE-8701DFC90FBE">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PK_NEGOCIO" id="2828D6B7-3085-4025-E44E-C0A7BCA954CF">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.storage.oracle.TableCheckConstraintOracle">
+<TableCheckConstraint name="CH_NEGOCIO_RADIO" id="28A9A763-5AE8-BFCD-9F31-CA72CE467BF6">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<nameChanged>true</nameChanged>
+</TableCheckConstraint>
+<TableCheckConstraint name="CH_NEGOCIO_ESTADO" id="C009D29D-F73D-ECD8-E1D3-F47B98AA31C9">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<nameChanged>true</nameChanged>
+</TableCheckConstraint>
+</tableCheckConstraints>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="UK_NEGOCIO_NIT" id="B477FF60-413C-CEF9-0A35-12577A5A19CE">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev20c>

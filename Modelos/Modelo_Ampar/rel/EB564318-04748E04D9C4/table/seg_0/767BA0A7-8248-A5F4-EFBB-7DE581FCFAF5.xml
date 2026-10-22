@@ -1,0 +1,179 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="767BA0A7-8248-A5F4-EFBB-7DE581FCFAF5" name="producto">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>17A93E02-DECE-FE8C-85C7-91D73A03879D</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_producto" id="22E68465-90A1-076F-D2DB-517A0CD2C389">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>DBE3A2B7-313B-7A0B-5683-FDAB062DF458</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_negocio" id="7D968E2A-65E1-4508-6FCA-B1E6981AAA7B">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>D2AA9512-413D-623D-18C6-1998A6BE5C09</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="34F4CF03-280B-6F1C-7A4E-C979FBEC9CC7" referredColumn="E648C9CF-EB9B-7892-1273-2A4F587127DF"/>
+</associations>
+</Column>
+<Column name="id_categoria" id="3A4BDD30-2899-FD13-F6ED-9906CBF581DA">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>6B3AA92B-0B15-9E74-72B0-65E82B0293E2</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="148C2876-A140-0419-7470-A9868C9FF38C" referredColumn="C2DD276A-458E-3290-4920-1788FE145E42"/>
+</associations>
+</Column>
+<Column name="nombre" id="0E1BDAD0-8F0D-B53E-2C7B-314CBAFF6968">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>57BF9888-9735-97A3-9238-4EA1C3635096</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9D2E5054-4759-5C06-1FBD-50586BB7B378</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="CADC23D3-5F67-D430-7805-D8A904198ADB">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>6E17B51A-1013-D605-7EA8-83FB1642EB67</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>638F6ED5-4F67-F205-FEEA-BA304F76FA3B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="precio" id="56270D76-0F81-3290-08EA-FADECAC5A43A">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>56ED9BF0-3070-3C7A-EFEC-6D0F488DCC46</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4C8EFBB4-B022-924F-01D6-1069E2CF5DC3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="disponible" id="9738AEA8-06BB-F66D-1830-7B39C51DA457">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>F9EC6989-2336-89D4-28C0-10AB6B7FB860</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>84752B5E-7C0F-A171-13A5-3952763E6D43</domain>
+<defaultValue>&apos;S&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado" id="848F70C7-8532-2517-B29D-6AB221235295">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>DCD0B39C-03ED-0292-7B8C-2FBF2E66684A</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>84752B5E-7C0F-A171-13A5-3952763E6D43</domain>
+<defaultValue>&apos;A&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="77524ECA-1904-0300-0DDF-6C98EAB00B6B" name="PK_PRODUCTO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>F5CC2BD9-1F05-78A3-6CE3-56F4B35E7C02</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="22E68465-90A1-076F-D2DB-517A0CD2C389"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D0A99F2E-4C8E-D6DC-3D78-C0AA084D9A94" name="FK_PRODUCTO_CATEG">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A4BDD30-2899-FD13-F6ED-9906CBF581DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D2E6C6F3-70B3-9514-7B8A-5272F15F3E4D" name="FK_PRODUCTO_NEGOCIO">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7D968E2A-65E1-4508-6FCA-B1E6981AAA7B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="CH_PRODUCTO_PRECIO" directorySegmentName="seg_0" id="F4C1ABEF-8B53-0528-C410-133B8AA65E17">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>5D9C1413-19F3-6490-F185-9C9F9D66A40B</importedID>
+<rule><![CDATA[precio > 0]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_PRODUCTO_DISPONIBLE" directorySegmentName="seg_0" id="D16823EE-3A7F-13F7-F034-C4DF47B15E87">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>BE0955C2-0539-5436-3D29-B9618B751644</importedID>
+<rule><![CDATA[disponible IN ('S','N')]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_PRODUCTO_ESTADO" directorySegmentName="seg_0" id="EDF236D7-78C3-ADC4-DA2B-5521F84BCF02">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>37F5A53B-D590-686A-E612-2D8D2090B2D1</importedID>
+<rule><![CDATA[estado IN ('A','I')]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

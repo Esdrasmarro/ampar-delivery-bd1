@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_CANC_ENT_MOTIVO" directorySegmentName="seg_0" id="8EBA5392-BC69-27B5-A1D0-F409B89F8F09">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>27103097-2898-3B32-58CD-F24A86B5AF90</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<sourcePk>F00F7D6A-8D35-E20B-5DBA-902AD4405CAC</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>404DC783-7AF0-84D5-1DF4-AC96C08F6FC1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D9885DEC-DFA0-19E9-7892-B876AA16DBB4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

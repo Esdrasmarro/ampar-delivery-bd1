@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="16FC65E2-F262-FB76-84C4-4A6F59FA2A25" containerWithKeyObject="70D21C7A-1C4C-E2C8-63EF-24E9FE66217C" localFKIndex="1FAFE873-AACD-955F-1E56-83B21857B6A8" name="FK_CALIF_PEDIDO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>0F1EDE72-569B-3BE2-E1D0-247B5B22316D</importedID>
+<referredTableLongName>pedido</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>35667C84-BBB3-7162-99DD-DF2DABBDA339</referredTableID>
+<keyObject>6273927C-3CF0-3270-2437-8773274DD113</keyObject>
+<referredKeyID>6273927C-3CF0-3270-2437-8773274DD113</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_pedido</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EDC56ABC-5B52-B978-D6A6-54888390357B" containerWithKeyObject="105AC796-BDCC-BEEE-8116-86FCE355ACD6" localFKIndex="106AE439-7530-30F3-302D-74FDD4A32FDC" name="FK_MUNI_DEPTO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>FD50808E-399C-FC14-9297-1950016C7A27</importedID>
+<referredTableLongName>departamento</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>DC7EEC50-5CA7-1475-8C6B-544B4A295A69</referredTableID>
+<keyObject>A9A6B01E-C6E6-677D-79D1-2D52CA39E136</keyObject>
+<referredKeyID>A9A6B01E-C6E6-677D-79D1-2D52CA39E136</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_departamento</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

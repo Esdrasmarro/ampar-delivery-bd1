@@ -1,0 +1,13 @@
+# Archivos que no se suben al repositorio
+# Compilados de Maven (se generan con mvn package)
+target/
+
+# Configuración local de IntelliJ
+.idea/
+*.iml
+
+# Archivos temporales de Word y del sistema
+~$*
+*.tmp
+Thumbs.db
+desktop.ini

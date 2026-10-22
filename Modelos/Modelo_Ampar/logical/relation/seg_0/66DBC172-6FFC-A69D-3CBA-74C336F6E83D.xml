@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_CANC_ENT_PEDIDO" directorySegmentName="seg_0" id="66DBC172-6FFC-A69D-3CBA-74C336F6E83D">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>86BE4ACF-2E4F-336D-84CA-98318DEE8ED8</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<sourcePk>978B386A-976A-9EFE-EC5A-D9C0F37CE78D</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>1CEFFCF4-C199-F480-8849-1C8DC14E7A5D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D9885DEC-DFA0-19E9-7892-B876AA16DBB4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

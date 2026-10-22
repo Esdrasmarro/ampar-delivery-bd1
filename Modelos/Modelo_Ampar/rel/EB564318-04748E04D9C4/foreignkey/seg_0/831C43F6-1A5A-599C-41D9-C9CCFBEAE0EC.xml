@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="831C43F6-1A5A-599C-41D9-C9CCFBEAE0EC" containerWithKeyObject="4893C99F-5682-4B5B-F8F7-F2E15F478C79" localFKIndex="1A859D4A-AB03-2ADC-DF74-C944A9E1AF7C" name="FK_MENU_MODULO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>5E03C89E-3204-52A6-350B-67A25DFE9994</importedID>
+<referredTableLongName>modulo</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>93E5FA8E-826C-45AC-3DC9-093C48BE982A</referredTableID>
+<keyObject>5C5854C1-C534-B97A-F005-ADF261019F55</keyObject>
+<referredKeyID>5C5854C1-C534-B97A-F005-ADF261019F55</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_modulo</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="90708AC5-A428-6E86-FEB4-E11785C959C5" containerWithKeyObject="E400629D-9867-348A-E580-DA10D83D84BA" localFKIndex="4F402001-5BA3-79A1-20F8-09F57680CBC4" name="FK_CANC_PED_MOTIVO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>055F40A0-3405-E505-3417-94B75D73100C</importedID>
+<referredTableLongName>motivo_cancelacion</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>486AB9BA-EBA3-6C60-5253-42C56842C76C</referredTableID>
+<keyObject>158240AA-14B5-8689-E6A3-958AFD802329</keyObject>
+<referredKeyID>158240AA-14B5-8689-E6A3-958AFD802329</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_motivo</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

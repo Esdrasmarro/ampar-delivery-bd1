@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="BECA2401-6CC2-927C-B09A-213F32B5A897" containerWithKeyObject="B95C18BE-915D-D063-6DBE-FA657C9FED49" localFKIndex="B35901A5-0949-1FE0-038E-FC67C0876E37" name="FK_DIRECCION_CLIENTE">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>D255650F-5B6C-BA2A-6BAB-B423D8D2F5D4</importedID>
+<referredTableLongName>cliente</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B06EFE2F-0610-5C0A-93E3-DC730EC3008C</referredTableID>
+<keyObject>D0232330-8F23-CEAD-ABF4-E2B4F233A2EE</keyObject>
+<referredKeyID>D0232330-8F23-CEAD-ABF4-E2B4F233A2EE</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_cliente</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

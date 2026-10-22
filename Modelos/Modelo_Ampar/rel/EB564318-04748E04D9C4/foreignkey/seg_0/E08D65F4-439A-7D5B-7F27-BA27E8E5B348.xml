@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E08D65F4-439A-7D5B-7F27-BA27E8E5B348" containerWithKeyObject="35667C84-BBB3-7162-99DD-DF2DABBDA339" localFKIndex="CBA4AEFF-8365-F3D6-F236-76FA691F8906" name="FK_PEDIDO_REPARTIDOR">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>DE41A647-59DB-F439-3036-72972937EDE2</importedID>
+<referredTableLongName>repartidor</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>57AD1FD4-0270-BAB0-7945-4E2332B0ED73</referredTableID>
+<keyObject>3C1EA2E7-9036-EB31-1D09-17288E9F1469</keyObject>
+<referredKeyID>3C1EA2E7-9036-EB31-1D09-17288E9F1469</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>id_repartidor</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

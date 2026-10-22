@@ -1,0 +1,153 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B153410A-D83D-850C-AF7A-CBB34BFD337A" name="horario_negocio">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>C51C2493-E0C2-2EC4-8A15-2E9263B7E9F2</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_horario" id="12EDEB73-0AD2-F328-6910-6274F9D99F4A">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>42E25309-D101-EE44-FE39-2D198E5B3141</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_negocio" id="1A94CEFE-384D-180F-22E9-B4BAA05C01B9">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>0EC89197-440A-58B6-F883-5C15771DBFF5</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B3448860-38AD-F626-49EC-343DB603B13D" referredColumn="E648C9CF-EB9B-7892-1273-2A4F587127DF"/>
+</associations>
+</Column>
+<Column name="dia_semana" id="8E667D54-4A21-058A-02F4-FAC4948C7498">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>8867D003-F818-61D3-CCD6-F2A3F25B1547</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F6504634-749A-BB69-E154-267D1F6E39AD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hora_apertura" id="E4EC67A7-AAC2-D513-2A3F-D154EEFEDD9B">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>C068E9D8-8CC7-38BE-AB42-95460199CC8C</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>2EA1BC40-951E-625C-48CD-C03E38624A6D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hora_cierre" id="AE2F8C7D-1BF0-D3F4-1EB0-508CDCCEA497">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>15414A3F-38C7-04B6-4691-29F5112703C5</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>2EA1BC40-951E-625C-48CD-C03E38624A6D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hace_entrega" id="D09DAF59-8AB5-B6CC-44D8-41DCA9A74F6C">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>7FDE9A33-3A55-A229-F46A-A9C842C214FB</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>84752B5E-7C0F-A171-13A5-3952763E6D43</domain>
+<defaultValue>&apos;S&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="228B45FE-5FD2-78ED-8FBD-B87B32CF3523" name="PK_HORARIO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>3709F662-71BF-0F96-08B9-40D36AABF6E5</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="12EDEB73-0AD2-F328-6910-6274F9D99F4A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="444F3DBD-EB25-46DC-FD91-6ABB5D2409F0" name="UK_HORARIO_DIA">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>BC09B953-2893-6B4E-2EF2-51C0DB5BFC02</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1A94CEFE-384D-180F-22E9-B4BAA05C01B9"/>
+<colUsage columnID="8E667D54-4A21-058A-02F4-FAC4948C7498"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E54796C1-D958-6C32-E053-173B5441CF0B" name="FK_HORARIO_NEGOCIO">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1A94CEFE-384D-180F-22E9-B4BAA05C01B9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="CH_HORARIO_DIA" directorySegmentName="seg_0" id="68E594B7-0171-E34B-A999-EC8C5D493349">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>634F3C51-5ADA-FB62-D5C6-6406773E5E93</importedID>
+<rule><![CDATA[dia_semana BETWEEN 1 AND 7]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_HORARIO_HORAS" directorySegmentName="seg_0" id="5B85F17E-69B3-942E-BE40-15D45F33977E">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>7B60C57D-9261-346C-43DB-56A75A47E5C2</importedID>
+<rule><![CDATA[hora_apertura < hora_cierre]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_HORARIO_ENTREGA" directorySegmentName="seg_0" id="163137EB-9883-B0B4-CFF5-C9AB7E30E234">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>BD53DBC2-8E41-43CE-5A94-FF16242A74EE</importedID>
+<rule><![CDATA[hace_entrega IN ('S','N')]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

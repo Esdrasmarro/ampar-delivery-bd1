@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C708CAA9-9504-A682-BEF9-97DDF42C0D74" name="rol_menu">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>C9422A2F-F36D-FBB1-DCD8-0252DEF6FC95</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_rol" id="9E136A08-33A0-D6EA-449B-E22EA2AABBC7">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>A2F61633-A84B-E4BA-13A2-ED64C1C089B5</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B25B762F-4037-B36B-39FA-5093AC18A334" referredColumn="B65DAEA5-0060-83F7-219A-957E9A907C40"/>
+</associations>
+</Column>
+<Column name="id_menu" id="0C940CFF-B8CE-D51D-A127-B4CC833B6E66">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>471111B9-2BFF-DF65-09C6-B6C3A8621587</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F75D5222-6129-F165-6F83-0AF43A9A1B4C" referredColumn="186BB96D-21AE-BA01-5A4D-58ADB4518F49"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CA05840A-86D6-3991-4ACB-873BF7B4CC5A" name="PK_ROL_MENU">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>E1B0A816-1FE0-E748-719C-3088FDB65163</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9E136A08-33A0-D6EA-449B-E22EA2AABBC7"/>
+<colUsage columnID="0C940CFF-B8CE-D51D-A127-B4CC833B6E66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5AF492BF-9233-9234-278C-20ED3D52DA1C" name="FK_ROL_MENU_MENU">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0C940CFF-B8CE-D51D-A127-B4CC833B6E66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="863E1D92-7C64-900D-E5E3-948CA9E2B8B4" name="FK_ROL_MENU_ROL">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9E136A08-33A0-D6EA-449B-E22EA2AABBC7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_DETALLE_PRODUCTO" directorySegmentName="seg_0" id="5232BF36-97E2-1C23-A92D-E51AAA25FB75">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:16:32 UTC</createdTime>
+<generatorID>26E567FF-D227-0F5F-CE35-3298D1BD2E6A</generatorID>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<engineerTo>
+<item key="EB564318-2F48-E201-1E6E-04748E04D9C4" value="true"/>
+</engineerTo>
+<sourcePk>609E1AA1-CF9B-B119-D609-7247C3CCE89A</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A58CC406-6BD2-11D4-DEB8-9AE1CF3CAF76</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6EB26AC9-1A4E-B4AA-F2AD-3B068FDAFFF6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

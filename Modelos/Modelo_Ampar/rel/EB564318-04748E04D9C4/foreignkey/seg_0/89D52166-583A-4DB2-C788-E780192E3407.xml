@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="89D52166-583A-4DB2-C788-E780192E3407" containerWithKeyObject="35667C84-BBB3-7162-99DD-DF2DABBDA339" localFKIndex="BA00E6CB-B581-67A5-98DE-422CC3639E2B" name="FK_PEDIDO_MET_PAGO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>92BAE3EB-2043-A549-C4CB-AD9984E4D257</importedID>
+<referredTableLongName>metodo_pago</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>105B9CD9-8280-3A71-D7CE-BF1F24068005</referredTableID>
+<keyObject>04727EC2-1B9B-463F-F01E-63E99B514205</keyObject>
+<referredKeyID>04727EC2-1B9B-463F-F01E-63E99B514205</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_metodo_pago</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

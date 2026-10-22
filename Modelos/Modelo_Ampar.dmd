@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Modelo_Ampar" id="2A0468B2-D945-7907-7EE9-88D1FC7B63B2" version="3.5">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:13:39 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>2A0468B2-D945-7907-7EE9-88D1FC7B63B2</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="109A57ED-8131-9412-33E6-364C83B6DF08">
+<designStoragePath>C:\Script_Modelo_DataModeler</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>

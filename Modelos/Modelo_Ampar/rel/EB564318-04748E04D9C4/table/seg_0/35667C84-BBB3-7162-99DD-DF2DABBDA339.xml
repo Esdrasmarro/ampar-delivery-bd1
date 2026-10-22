@@ -1,0 +1,333 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="35667C84-BBB3-7162-99DD-DF2DABBDA339" name="pedido">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>949CE3EF-B493-67B9-8088-E16DE194DBA3</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_pedido" id="CB957C49-46CE-F760-BA72-CE86C3B69782">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>E14C9B53-AEF6-2E08-6D13-148643763945</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_cliente" id="6EB9C202-646D-2211-F52A-3CC96252D249">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>F29F480E-17C9-6A23-DDCB-3DFD8C683620</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2E57EB22-6D24-7D1A-D0B1-FD24807B3360" referredColumn="C442431C-8E62-0AB9-B236-5652D9F15B48"/>
+</associations>
+</Column>
+<Column name="id_negocio" id="6B19FF43-AC52-5CFF-8052-63E791E3D8EC">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>4BAE2842-8AD9-D28C-B62D-5C128BEA53CD</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6A0B90FE-4AFA-77BA-8E8A-88B27299498B" referredColumn="E648C9CF-EB9B-7892-1273-2A4F587127DF"/>
+</associations>
+</Column>
+<Column name="id_direccion" id="5C3CEC9B-F526-1AA7-C413-D0C80991CF41">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>6A601331-16D6-D906-6690-8676EF436859</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E7B4BF97-54FA-AF90-D340-91FCC767B6FD" referredColumn="D5F77A79-8EFB-31D7-8990-169FAC46B09C"/>
+</associations>
+</Column>
+<Column name="id_metodo_pago" id="0ACAC395-562D-F6C4-589F-F57B77D23418">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>A5103D79-F7ED-6D53-73E5-A392F5639FE7</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="89D52166-583A-4DB2-C788-E780192E3407" referredColumn="6ABA0383-6923-CFCC-2539-B566108C97D4"/>
+</associations>
+</Column>
+<Column name="id_estado_pedido" id="7E110E7E-78CA-F745-CCC8-6E60BB6C2D3E">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>B70AF5A5-ED87-7C99-DB5F-D2F07D01C859</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7EF92B10-F000-C852-BA01-F31327F69B0D" referredColumn="C6173A7B-8F04-98DD-ACF9-EC9FEEF70E15"/>
+</associations>
+</Column>
+<Column name="id_repartidor" id="2938907C-3DFD-9470-6486-4F13AA2239B3">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>33426625-3A05-FBAD-03D3-3A26FE859DB8</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>B6DD486F-0001-9738-D503-BEE7B0F7005C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E08D65F4-439A-7D5B-7F27-BA27E8E5B348" referredColumn="7C9D80A4-C827-B57D-0631-2900495312A1"/>
+</associations>
+</Column>
+<Column name="fecha_pedido" id="FA987007-36C5-534D-6FB0-7DD22E8AB5A4">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>7F9E83B1-158B-A921-CFDF-C4418D62B94E</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>30A33551-A9E6-E56D-A22A-B711E0FD7490</domain>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="subtotal" id="958AB434-2479-7C3C-F9C0-588FAC105DC9">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>CB6FE014-9D30-A9BB-93A3-78D6BEA0B07A</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4C8EFBB4-B022-924F-01D6-1069E2CF5DC3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="costo_envio" id="EE0C0D48-2E40-568D-0951-874BBC17C028">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>E003882D-C188-D76F-CFF0-37D1EFC8AB6C</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4C8EFBB4-B022-924F-01D6-1069E2CF5DC3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cargo_anterior" id="0688F8D0-5E5F-0A79-77BF-1F22D6D006BC">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>B667D923-E6FE-F3A2-0CFD-C196A767B03C</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4C8EFBB4-B022-924F-01D6-1069E2CF5DC3</domain>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total" id="A9B6FC72-840D-3FF2-5018-906C574C9E6A">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>FC825A7C-F4A1-A311-86A2-36A1A85789E8</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>4C8EFBB4-B022-924F-01D6-1069E2CF5DC3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="distancia_km" id="60F943B6-FB2D-0DC4-C8AE-952583BAD12E">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>117D2A83-231A-C2F8-4BD0-222185656498</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9D4467C2-25AD-EDA9-C632-F47CFB1398CF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="zona_roja" id="6C7911D7-74EC-86B8-4D59-6A98C8BCCE4E">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>13A3A19C-69E6-974F-AA7F-29E92A2F1595</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>84752B5E-7C0F-A171-13A5-3952763E6D43</domain>
+<defaultValue>&apos;N&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado_pago" id="DC3F9698-27BF-6998-95FE-E9DB5F970D6D">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>1DE6670D-F862-1017-EDE5-06F941A49960</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9EA1AB19-7164-57AB-6104-D1B177015B9A</domain>
+<defaultValue>&apos;PENDIENTE&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6273927C-3CF0-3270-2437-8773274DD113" name="PK_PEDIDO">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>A09B7C8C-6AD7-FF7B-950A-843EE949D6C2</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB957C49-46CE-F760-BA72-CE86C3B69782"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="808E8E3D-6771-8DDF-F05C-6595DB3A16B7" name="FK_PEDIDO_CLIENTE">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6EB9C202-646D-2211-F52A-3CC96252D249"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9AE77A85-2368-5C04-E7E9-377A07275151" name="FK_PEDIDO_DIRECCION">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5C3CEC9B-F526-1AA7-C413-D0C80991CF41"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="15A3174D-F446-9019-DB40-61FFD7064E39" name="FK_PEDIDO_EST_PED">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7E110E7E-78CA-F745-CCC8-6E60BB6C2D3E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BA00E6CB-B581-67A5-98DE-422CC3639E2B" name="FK_PEDIDO_MET_PAGO">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0ACAC395-562D-F6C4-589F-F57B77D23418"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="59487F37-0C17-1D3D-96EB-B69F467FD64B" name="FK_PEDIDO_NEGOCIO">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B19FF43-AC52-5CFF-8052-63E791E3D8EC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CBA4AEFF-8365-F3D6-F236-76FA691F8906" name="FK_PEDIDO_REPARTIDOR">
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2938907C-3DFD-9470-6486-4F13AA2239B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="CH_PEDIDO_SUBTOTAL" directorySegmentName="seg_0" id="9D1C063C-6F16-A18C-EABB-A4C9F0F1CE6E">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>8FBCBE6E-A570-9B50-D9FD-57BD253054D1</importedID>
+<rule><![CDATA[subtotal > 0]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_PEDIDO_MONTOS" directorySegmentName="seg_0" id="9D3DB6D0-BDFF-9A2D-9FA9-F3FD4C741607">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>E2C58498-10E7-C606-4BA3-3787380F0EDB</importedID>
+<rule><![CDATA[costo_envio >= 0 AND cargo_anterior >= 0 AND distancia_km >= 0]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_PEDIDO_TOTAL" directorySegmentName="seg_0" id="14D9FF40-6164-6497-12D8-EFFCBC9BC76C">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>E86ED989-A787-90BA-3B32-9AA0DEEC03E7</importedID>
+<rule><![CDATA[total = subtotal + costo_envio + cargo_anterior]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_PEDIDO_ZONA_ROJA" directorySegmentName="seg_0" id="F1B246D4-05BB-6D5D-B6A6-79CC4356F64B">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>1DEA27EE-F829-F45B-72CA-DE7F53D764B6</importedID>
+<rule><![CDATA[zona_roja IN ('S','N')]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="CH_PEDIDO_ESTADO_PAGO" directorySegmentName="seg_0" id="EA3DF551-BC94-2475-97EC-BC45C183CDF5">
+<sourceDDLFile>Script_Modelo_DataModeler.sql</sourceDDLFile>
+<createdBy>esdra</createdBy>
+<createdTime>2026-10-13 03:15:07 UTC</createdTime>
+<ownerDesignName>Modelo_Ampar</ownerDesignName>
+<importedID>4949AB0D-594A-EB3F-4252-A5AE56B467DC</importedID>
+<rule><![CDATA[estado_pago IN ('PENDIENTE','PAGADO','ANULADO')]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>
