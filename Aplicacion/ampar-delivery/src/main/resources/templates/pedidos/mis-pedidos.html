@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Mis pedidos')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <div class="d-flex justify-content-between align-items-start">
+        <div><h1 class="titulo">Mis pedidos</h1><p class="subtitulo">Haga clic en un pedido para ver el seguimiento, cancelarlo o calificar al repartidor.</p></div>
+        <a class="btn btn-ampar" th:href="@{/pedidos/nuevo}">+ Hacer un pedido</a>
+    </div>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+    <div class="tarjeta">
+        <table class="table table-hover align-middle">
+            <thead><tr><th>No.</th><th>Fecha</th><th>Negocio</th><th>Estado</th><th>Pago</th><th>Repartidor</th><th class="text-end">Total</th><th></th></tr></thead>
+            <tbody>
+            <tr th:each="p : ${pedidos}">
+                <td th:text="${p['ID_PEDIDO']}"></td>
+                <td th:text="${#dates.format(p['FECHA_PEDIDO'], 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${p['NEGOCIO']}"></td>
+                <td><span class="badge bg-primary" th:text="${p['ESTADO']}"></span></td>
+                <td th:text="${p['METODO_PAGO']} + ' (' + ${p['ESTADO_PAGO']} + ')'"></td>
+                <td th:text="${p['REPARTIDOR']}"></td>
+                <td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(p['TOTAL'], 1, 'COMMA', 2, 'POINT')}"></td>
+                <td><a class="btn btn-sm btn-outline-primary" th:href="@{/pedidos/mis-pedidos/{id}(id=${p['ID_PEDIDO']})}">Ver</a></td>
+            </tr>
+            <tr th:if="${pedidos.isEmpty()}"><td colspan="8" class="text-muted text-center">Todavía no tiene pedidos.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

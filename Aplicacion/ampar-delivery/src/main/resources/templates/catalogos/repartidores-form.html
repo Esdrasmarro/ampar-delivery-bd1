@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Repartidores')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Repartidores</h1>
+    <p class="subtitulo" th:text="${fila['ID_REPARTIDOR'] == null} ? 'Nuevo registro (alta)' : 'Modificar el registro No. ' + ${fila['ID_REPARTIDOR']} + ' (cambio)'"></p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+
+    <div class="tarjeta" style="max-width: 900px;">
+        <form th:action="@{/despacho/repartidores/guardar}" method="post" class="row g-3">
+            <input type="hidden" name="id" th:value="${fila['ID_REPARTIDOR']}">
+            <div class="col-md-6">
+                <label class="form-label" for="idTipoVehiculo">Vehículo<span class="text-danger"> *</span></label>
+                <select class="form-select" id="idTipoVehiculo" name="idTipoVehiculo" required>
+                    <option value="">-- Seleccione --</option>
+                    <option th:each="o : ${vehiculos}" th:value="${o['ID']}" th:text="${o['TEXTO']}"
+                            th:selected="${#strings.toString(o['ID']) == #strings.toString(fila['ID_TIPO_VEHICULO'])}"></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="nombres">Nombres<span class="text-danger"> *</span></label>
+                <input class="form-control" type="text" id="nombres" name="nombres" th:value="${fila['NOMBRES']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="apellidos">Apellidos<span class="text-danger"> *</span></label>
+                <input class="form-control" type="text" id="apellidos" name="apellidos" th:value="${fila['APELLIDOS']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="dpi">DPI<span class="text-danger"> *</span></label>
+                <input class="form-control" type="text" id="dpi" name="dpi" th:value="${fila['DPI']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="telefono">Teléfono<span class="text-danger"> *</span></label>
+                <input class="form-control" type="text" id="telefono" name="telefono" th:value="${fila['TELEFONO']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="licencia">Licencia<span class="text-danger"> *</span></label>
+                <input class="form-control" type="text" id="licencia" name="licencia" th:value="${fila['LICENCIA']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="placa">Placa</label>
+                <input class="form-control" type="text" id="placa" name="placa" th:value="${fila['PLACA']}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="latitud">Latitud</label>
+                <input class="form-control" type="number" step="any" id="latitud" name="latitud" th:value="${fila['LATITUD']}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="longitud">Longitud</label>
+                <input class="form-control" type="number" step="any" id="longitud" name="longitud" th:value="${fila['LONGITUD']}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="disponible">Disponible<span class="text-danger"> *</span></label>
+                <select class="form-select" id="disponible" name="disponible" required>
+                    <option value="S" th:selected="${#strings.toString(fila['DISPONIBLE']) == 'S'}">Sí</option>
+                    <option value="N" th:selected="${#strings.toString(fila['DISPONIBLE']) == 'N'}">No</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="estado">Estado<span class="text-danger"> *</span></label>
+                <select class="form-select" id="estado" name="estado" required>
+                    <option value="A" th:selected="${#strings.toString(fila['ESTADO']) == 'A'}">Activo</option>
+                    <option value="I" th:selected="${#strings.toString(fila['ESTADO']) == 'I'}">Inactivo</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <p class="small text-muted mb-1">Haga clic en el mapa para llenar la latitud y la longitud.</p>
+                <div id="mapa" class="mapa"></div>
+            </div>
+            <div class="col-12 d-flex gap-2">
+                <button class="btn btn-ampar" type="submit">Guardar</button>
+                <a class="btn btn-outline-secondary" th:href="@{/despacho/repartidores}">Cancelar</a>
+            </div>
+        </form>
+        <form th:if="${fila['ID_REPARTIDOR'] != null}" class="mt-4 pt-3 border-top" th:action="@{/despacho/repartidores/baja/{id}(id=${fila['ID_REPARTIDOR']})}" method="post">
+            <p class="small text-muted mb-2">Dar de baja cambia el estado a inactivo (baja lógica); el registro no se borra.</p>
+            <button class="btn btn-outline-danger btn-sm" type="submit">Dar de baja</button>
+        </form>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script>mapaSelector('mapa', 'latitud', 'longitud');</script>
+</body>
+</html>

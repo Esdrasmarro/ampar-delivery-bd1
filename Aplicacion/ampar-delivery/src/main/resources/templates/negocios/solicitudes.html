@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Solicitudes de afiliación')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Solicitudes de afiliación</h1>
+    <p class="subtitulo">Negocios nuevos que se registraron en la página pública. Al aprobar se activa el negocio, se crea su usuario (su correo) y un horario inicial.</p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+
+    <div class="tarjeta">
+        <h5>Pendientes</h5>
+        <p class="text-muted" th:if="${pendientes.isEmpty()}">No hay solicitudes pendientes.</p>
+        <div class="border rounded p-3 mb-3" th:each="n : ${pendientes}">
+            <div class="row">
+                <div class="col-md-7">
+                    <h6 class="mb-1" th:text="${n['NOMBRE']} + ' (NIT ' + ${n['NIT']} + ')'"></h6>
+                    <div class="small text-muted">
+                        <span th:text="${n['TIPO']}"></span> · <span th:text="${n['ZONA']}"></span> ·
+                        <span th:text="${n['DIRECCION']}"></span><br>
+                        Propietario: <span th:text="${n['PROPIETARIO']}"></span> · Tel. <span th:text="${n['TELEFONO']}"></span> ·
+                        <span th:text="${n['CORREO']}"></span><br>
+                        Solicitud: <span th:text="${#dates.format(n['FECHA_REGISTRO'], 'dd/MM/yyyy HH:mm')}"></span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <form class="d-flex gap-2 mb-2" th:action="@{/negocios/solicitudes/{id}/aprobar(id=${n['ID_NEGOCIO']})}" method="post">
+                        <input class="form-control form-control-sm" name="clave" placeholder="Contraseña inicial (mín. 6)" required minlength="6">
+                        <button class="btn btn-sm btn-success" type="submit">Aprobar</button>
+                    </form>
+                    <form th:action="@{/negocios/solicitudes/{id}/rechazar(id=${n['ID_NEGOCIO']})}" method="post">
+                        <button class="btn btn-sm btn-outline-danger" type="submit">Rechazar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <h5>Negocios procesados</h5>
+        <table class="table table-sm">
+            <thead><tr><th>No.</th><th>Negocio</th><th>Tipo</th><th>Zona</th><th>Estado</th></tr></thead>
+            <tbody><tr th:each="n : ${procesadas}">
+                <td th:text="${n['ID_NEGOCIO']}"></td><td th:text="${n['NOMBRE']}"></td><td th:text="${n['TIPO']}"></td>
+                <td th:text="${n['ZONA']}"></td><td th:text="${n['ESTADO']}"></td></tr></tbody>
+        </table>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

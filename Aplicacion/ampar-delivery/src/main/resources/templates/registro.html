@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Crear cuenta')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido-publico" style="max-width: 620px;">
+    <div class="tarjeta">
+        <h1 class="titulo">Crear cuenta de cliente</h1>
+        <p class="subtitulo">Su correo será su usuario. Después podrá registrar sus direcciones de entrega.</p>
+        <div th:replace="~{fragmentos/base :: mensajes}"></div>
+        <form th:action="@{/registro}" method="post" class="row g-3">
+            <div class="col-md-6"><label class="form-label">Nombres</label><input class="form-control" name="nombres" th:value="${param.nombres}" required maxlength="60"></div>
+            <div class="col-md-6"><label class="form-label">Apellidos</label><input class="form-control" name="apellidos" th:value="${param.apellidos}" required maxlength="60"></div>
+            <div class="col-md-6"><label class="form-label">Teléfono (SMS / WhatsApp)</label><input class="form-control" name="telefono" th:value="${param.telefono}" required maxlength="15"></div>
+            <div class="col-md-6"><label class="form-label">Correo</label><input class="form-control" type="email" name="correo" th:value="${param.correo}" required maxlength="100"></div>
+            <div class="col-md-6"><label class="form-label">Contraseña</label><input class="form-control" type="password" name="clave" required minlength="6"></div>
+            <div class="col-md-6"><label class="form-label">Repetir contraseña</label><input class="form-control" type="password" name="clave2" required minlength="6"></div>
+            <div class="col-12"><button class="btn btn-ampar" type="submit">Crear cuenta</button>
+                <a class="btn btn-link" th:href="@{/}">Cancelar</a></div>
+        </form>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

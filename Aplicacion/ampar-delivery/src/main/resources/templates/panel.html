@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Inicio')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+    <h1 class="titulo" th:text="'Bienvenido(a), ' + ${usuarioSesion.nombre}">Bienvenido</h1>
+    <p class="subtitulo">Rol: <strong th:text="${usuarioSesion.rol}">ROL</strong>. Estas son las opciones que tiene asignadas:</p>
+    <div class="row g-3">
+        <div class="col-md-4" th:each="modulo : ${usuarioSesion.menu}">
+            <div class="tarjeta h-100">
+                <h5 th:text="${modulo.nombre}">Módulo</h5>
+                <ul class="mb-0">
+                    <li th:each="op : ${modulo.opciones}"><a th:href="@{${op.url}}" th:text="${op.nombre}">Opción</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

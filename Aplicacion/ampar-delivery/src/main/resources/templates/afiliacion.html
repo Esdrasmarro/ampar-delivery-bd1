@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Afiliar mi negocio')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido-publico">
+    <div class="tarjeta">
+        <h1 class="titulo">Afiliar mi negocio a Ampar</h1>
+        <p class="subtitulo">Llene la solicitud. Ampar la revisará y, al aprobarla, el correo del negocio será su usuario.</p>
+        <div th:replace="~{fragmentos/base :: mensajes}"></div>
+        <form th:action="@{/afiliacion}" method="post" class="row g-3">
+            <div class="col-md-6"><label class="form-label">Nombre del negocio</label><input class="form-control" name="nombre" th:value="${param.nombre}" required maxlength="100"></div>
+            <div class="col-md-3"><label class="form-label">NIT</label><input class="form-control" name="nit" th:value="${param.nit}" required maxlength="15"></div>
+            <div class="col-md-3"><label class="form-label">Tipo de negocio</label>
+                <select class="form-select" name="idTipoNegocio" required>
+                    <option th:each="t : ${tipos}" th:value="${t.ID}" th:text="${t.NOMBRE}"></option>
+                </select></div>
+            <div class="col-md-6"><label class="form-label">Propietario o encargado</label><input class="form-control" name="propietario" th:value="${param.propietario}" required maxlength="100"></div>
+            <div class="col-md-3"><label class="form-label">Teléfono</label><input class="form-control" name="telefono" th:value="${param.telefono}" required maxlength="15"></div>
+            <div class="col-md-3"><label class="form-label">Correo</label><input class="form-control" type="email" name="correo" th:value="${param.correo}" required maxlength="100"></div>
+            <div class="col-md-6"><label class="form-label">Dirección</label><input class="form-control" name="direccion" th:value="${param.direccion}" required maxlength="200"></div>
+            <div class="col-md-6"><label class="form-label">Zona</label>
+                <select class="form-select" name="idZona" required>
+                    <option th:each="z : ${zonas}" th:value="${z.ID}" th:text="${z.NOMBRE}"></option>
+                </select></div>
+            <div class="col-md-3"><label class="form-label">Latitud</label><input class="form-control" id="latitud" name="latitud" th:value="${param.latitud}" required readonly></div>
+            <div class="col-md-3"><label class="form-label">Longitud</label><input class="form-control" id="longitud" name="longitud" th:value="${param.longitud}" required readonly></div>
+            <div class="col-12"><p class="small text-muted mb-1">Haga clic en el mapa para marcar la ubicación del negocio.</p>
+                <div id="mapa" class="mapa"></div></div>
+            <div class="col-12"><button class="btn btn-ampar" type="submit">Enviar solicitud</button>
+                <a class="btn btn-link" th:href="@{/}">Cancelar</a></div>
+        </form>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script>mapaSelector('mapa', 'latitud', 'longitud');</script>
+</body>
+</html>

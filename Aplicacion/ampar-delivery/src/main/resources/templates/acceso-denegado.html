@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Acceso denegado')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <div class="tarjeta">
+        <h1 class="titulo">Acceso denegado</h1>
+        <p class="mb-3">Su rol no tiene permiso para entrar a esta página. Los permisos de cada rol se configuran
+            en la base de datos (Seguridad &gt; Permisos por rol).</p>
+        <a class="btn btn-ampar" th:href="@{/}">Volver al inicio</a>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

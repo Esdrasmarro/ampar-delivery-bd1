@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Pedido ' + ${p['ID_PEDIDO']})}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <a th:href="@{/pedidos/mis-pedidos}">&larr; Mis pedidos</a>
+    <h1 class="titulo mt-2">Pedido No. <span th:text="${p['ID_PEDIDO']}"></span>
+        <span class="badge bg-primary fs-6 align-middle" th:text="${p['ESTADO']}"></span></h1>
+    <p class="subtitulo"><span th:text="${p['NEGOCIO']}"></span> ·
+        <span th:text="${#dates.format(p['FECHA_PEDIDO'], 'dd/MM/yyyy HH:mm')}"></span> ·
+        Repartidor: <strong th:text="${p['REPARTIDOR']}"></strong>
+        <span th:if="${activo}" class="small text-muted"> · esta página se actualiza cada 30 segundos</span></p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+    <div class="alert alert-warning" th:if="${p['ZONA_ROJA'] == 'S'}">Aviso: la dirección de entrega está en una zona roja.</div>
+
+    <div class="row g-3">
+        <div class="col-lg-7">
+            <div class="tarjeta">
+                <h5>Seguimiento</h5>
+                <p class="mb-2" th:if="${activo and p['MINUTOS_ESTIMADOS'] != null}">
+                    Llegada estimada: <strong th:text="${p['MINUTOS_ESTIMADOS']} + ' minutos'"></strong>
+                    <span class="small text-muted" th:text="'(ruta de ' + ${p['RUTA_KM']} + ' km)'"></span></p>
+                <div id="mapa" class="mapa mb-2"></div>
+                <div class="small">
+                    <span class="badge" style="background:#1f5c99">Negocio</span>
+                    <span class="badge" style="background:#f28c28">Entrega</span>
+                    <span class="badge" style="background:#198754">Repartidor</span>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <h5>Productos</h5>
+                <table class="table table-sm">
+                    <tr th:each="l : ${lineas}">
+                        <td th:text="${l['CANTIDAD']} + ' x ' + ${l['PRODUCTO']}"></td>
+                        <td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(l['SUBTOTAL'], 1, 'COMMA', 2, 'POINT')}"></td>
+                    </tr>
+                    <tr><td>Envío</td><td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(p['COSTO_ENVIO'], 1, 'COMMA', 2, 'POINT')}"></td></tr>
+                    <tr th:if="${p['CARGO_ANTERIOR'] > 0}"><td>Cargo por cancelación anterior</td>
+                        <td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(p['CARGO_ANTERIOR'], 1, 'COMMA', 2, 'POINT')}"></td></tr>
+                    <tr class="fw-bold"><td>Total (<span th:text="${p['METODO_PAGO']}"></span> - <span th:text="${p['ESTADO_PAGO']}"></span>)</td>
+                        <td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(p['TOTAL'], 1, 'COMMA', 2, 'POINT')}"></td></tr>
+                </table>
+                <div class="small text-muted" th:each="pg : ${pagos}">
+                    <span th:text="${pg['TIPO']}"></span>: Q<span th:text="${#numbers.formatDecimal(pg['MONTO'], 1, 'COMMA', 2, 'POINT')}"></span>
+                    <span th:if="${pg['ULTIMOS4'] != null}" th:text="' · tarjeta ****' + ${pg['ULTIMOS4']} + ' · ' + ${pg['AUTORIZACION']}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="tarjeta">
+                <h5>Historial de estados</h5>
+                <ul class="linea-tiempo mb-0">
+                    <li th:each="t : ${tracking}">
+                        <strong th:text="${t['ESTADO']}"></strong><br>
+                        <span class="small text-muted" th:text="${#dates.format(t['FECHA'], 'dd/MM/yyyy HH:mm:ss')}"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tarjeta" th:if="${puedeCancelar}">
+                <h5>Cancelar pedido</h5>
+                <p class="small">Han pasado <strong th:text="${minutos}"></strong> de <span th:text="${limite}"></span> minutos.
+                    Se cobra el 15 % del total.</p>
+                <form th:action="@{/pedidos/mis-pedidos/{id}/cancelar(id=${p['ID_PEDIDO']})}" method="post" class="d-flex gap-2">
+                    <select class="form-select" name="idMotivo" required>
+                        <option th:each="m : ${motivos}" th:value="${m['ID_MOTIVO']}" th:text="${m['DESCRIPCION']}"></option>
+                    </select>
+                    <button class="btn btn-outline-danger" type="submit">Cancelar</button>
+                </form>
+            </div>
+            <div class="tarjeta" th:if="${cancelacion != null}">
+                <h5>Cancelación</h5>
+                <p class="mb-0 small">Motivo: <span th:text="${cancelacion['MOTIVO']}"></span><br>
+                    Cobro (<span th:text="${cancelacion['PORCENTAJE']}"></span> %): Q<span th:text="${cancelacion['MONTO_COBRO']}"></span> ·
+                    Reembolso: Q<span th:text="${cancelacion['MONTO_REEMBOLSO']}"></span> ·
+                    Cargo: <span th:text="${cancelacion['ESTADO_CARGO']}"></span></p>
+            </div>
+
+            <div class="tarjeta" th:if="${p['ESTADO'] == 'ENTREGADO' and calificacion == null}">
+                <h5>Calificar al repartidor</h5>
+                <form th:action="@{/pedidos/mis-pedidos/{id}/calificar(id=${p['ID_PEDIDO']})}" method="post">
+                    <select class="form-select mb-2" name="puntuacion" required>
+                        <option value="5">5 - Excelente</option><option value="4">4 - Bueno</option>
+                        <option value="3">3 - Regular</option><option value="2">2 - Malo</option><option value="1">1 - Muy malo</option>
+                    </select>
+                    <textarea class="form-control mb-2" name="comentario" maxlength="300" placeholder="Comentario (opcional)"></textarea>
+                    <button class="btn btn-ampar" type="submit">Enviar calificación</button>
+                </form>
+            </div>
+            <div class="tarjeta" th:if="${calificacion != null}">
+                <h5>Su calificación</h5>
+                <p class="mb-0"><strong th:text="${calificacion['PUNTUACION']} + ' de 5'"></strong> ·
+                    <span th:text="${calificacion['COMENTARIO']}"></span></p>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script th:inline="javascript">    var p = {
+        latNeg: /*[[${p['LAT_NEGOCIO']}]]*/ null, lonNeg: /*[[${p['LON_NEGOCIO']}]]*/ null,
+        latEnt: /*[[${p['LAT_ENTREGA']}]]*/ null, lonEnt: /*[[${p['LON_ENTREGA']}]]*/ null,
+        latRep: /*[[${p['LAT_REPARTIDOR']}]]*/ null, lonRep: /*[[${p['LON_REPARTIDOR']}]]*/ null
+    };
+    var mapa = crearMapa('mapa', [p.latEnt, p.lonEnt], 13);
+    var puntos = [];
+    if (punto(mapa, p.latNeg, p.lonNeg, '#1f5c99', 'Negocio')) puntos.push([p.latNeg, p.lonNeg]);
+    if (punto(mapa, p.latEnt, p.lonEnt, '#f28c28', 'Entrega')) puntos.push([p.latEnt, p.lonEnt]);
+    var activo = /*[[${activo}]]*/ false;
+    if (activo && p.latRep !== null && /*[[${p['ID_REPARTIDOR'] != null}]]*/ false) {
+        punto(mapa, p.latRep, p.lonRep, '#198754', 'Repartidor');
+        puntos.unshift([p.latRep, p.lonRep]);
+    }
+    var estado = /*[[${p['ESTADO']}]]*/ '';
+    if (puntos.length > 1) {
+        var ruta = (puntos.length === 3 && estado !== 'ASIGNADO') ? [puntos[0], puntos[2]] : puntos;
+        L.polyline(ruta, {color: '#1f5c99', dashArray: '6 6'}).addTo(mapa);
+        mapa.fitBounds(puntos, {padding: [30, 30]});
+    }
+    if (activo) setTimeout(function () { location.reload(); }, 30000);
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Pago del pedido')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Confirmar y pagar</h1>
+    <p class="subtitulo">Paso 3 de 3 · <span th:text="${negocio['NOMBRE']}"></span>. El pedido, su detalle y el pago se guardan en una sola transacción.</p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+
+    <form th:action="@{/pedidos/nuevo/confirmar}" method="post" class="row g-3">
+        <input type="hidden" name="idNegocio" th:value="${negocio['ID_NEGOCIO']}">
+        <input type="hidden" name="detalle" th:value="${detalle}">
+
+        <div class="col-lg-7">
+            <div class="tarjeta">
+                <h5>Dirección de entrega</h5>
+                <p class="text-muted" th:if="${direcciones.isEmpty()}">No tiene direcciones. Agregue una en
+                    <a th:href="@{/pedidos/direcciones/nuevo}">Mis direcciones</a>.</p>
+                <div class="form-check border rounded p-2 ps-5 mb-2" th:each="d : ${direcciones}"
+                     th:classappend="${d['ZONA_ROJA'] == 'S'} ? 'zona-roja'">
+                    <input class="form-check-input" type="radio" name="idDireccion" th:id="'dir' + ${d['ID_DIRECCION']}"
+                           th:value="${d['ID_DIRECCION']}" th:disabled="${d['DISTANCIA'] > d['LIMITE']}">
+                    <label class="form-check-label" th:for="'dir' + ${d['ID_DIRECCION']}">
+                        <strong th:text="${d['NOMBRE']}"></strong> - <span th:text="${d['DIRECCION']}"></span> (<span th:text="${d['ZONA']}"></span>)<br>
+                        <span class="small" th:text="'A ' + ${d['DISTANCIA']} + ' km del negocio'"></span>
+                        <span class="small text-danger" th:if="${d['DISTANCIA'] > d['LIMITE']}" th:text="' · fuera de cobertura (límite ' + ${d['LIMITE']} + ' km)'"></span>
+                        <span class="small text-danger fw-bold" th:if="${d['ZONA_ROJA'] == 'S'}"> · ZONA ROJA</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <h5>Método de pago</h5>
+                <div class="form-check" th:each="m, i : ${metodos}">
+                    <input class="form-check-input metodo" type="radio" name="idMetodo" th:id="'met' + ${m['ID_METODO_PAGO']}"
+                           th:value="${m['ID_METODO_PAGO']}" th:attr="data-pasarela=${m['USA_PASARELA']}" th:checked="${i.first}">
+                    <label class="form-check-label" th:for="'met' + ${m['ID_METODO_PAGO']}" th:text="${m['NOMBRE']}"></label>
+                </div>
+                <div id="datosTarjeta" class="row g-2 mt-2" style="display: none;">
+                    <div class="col-12 small text-muted">Pasarela de pagos simulada. Tarjetas de prueba:
+                        4111 1111 1111 1111 (aprobada) · 4000 0000 0000 0002 (rechazada).</div>
+                    <div class="col-md-6"><input class="form-control" name="tarjeta" placeholder="Número de tarjeta (16 dígitos)" maxlength="19"></div>
+                    <div class="col-md-3"><input class="form-control" name="mes" type="number" min="1" max="12" placeholder="Mes"></div>
+                    <div class="col-md-3"><input class="form-control" name="anio" type="number" min="2024" max="2040" placeholder="Año"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="tarjeta">
+                <h5>Resumen</h5>
+                <table class="table table-sm">
+                    <tr th:each="l : ${lineas}">
+                        <td th:text="${l.cantidad} + ' x ' + ${l.producto}"></td>
+                        <td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(l.subtotal, 1, 'COMMA', 2, 'POINT')}"></td>
+                    </tr>
+                    <tr><td>Subtotal</td><td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(subtotal, 1, 'COMMA', 2, 'POINT')}"></td></tr>
+                    <tr><td>Envío (tarifa única)</td><td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(envio, 1, 'COMMA', 2, 'POINT')}"></td></tr>
+                    <tr th:if="${cargo > 0}" class="table-warning"><td>Cargo por cancelación anterior</td>
+                        <td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(cargo, 1, 'COMMA', 2, 'POINT')}"></td></tr>
+                    <tr class="fw-bold"><td>Total</td><td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(total, 1, 'COMMA', 2, 'POINT')}"></td></tr>
+                </table>
+                <p class="small text-muted">Puede cancelar dentro de los primeros 5 minutos con un cobro del 15 % del total.</p>
+                <button class="btn btn-ampar w-100" type="submit">Confirmar pedido</button>
+                <a class="btn btn-link w-100" th:href="@{/pedidos/nuevo/{id}(id=${negocio['ID_NEGOCIO']})}">Cambiar productos</a>
+            </div>
+        </div>
+    </form>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script>    function revisarMetodo() {
+        var elegido = document.querySelector('.metodo:checked');
+        document.getElementById('datosTarjeta').style.display =
+            (elegido && elegido.dataset.pasarela === 'S') ? 'flex' : 'none';
+    }
+    document.querySelectorAll('.metodo').forEach(function (r) { r.addEventListener('change', revisarMetodo); });
+    revisarMetodo();
+</script>
+</body>
+</html>

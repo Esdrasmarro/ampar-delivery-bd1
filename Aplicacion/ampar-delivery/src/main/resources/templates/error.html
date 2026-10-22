@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Error')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main th:class="${usuarioSesion != null} ? 'contenido' : 'contenido-publico'">
+    <div class="tarjeta">
+        <h1 class="titulo">Ocurrió un problema</h1>
+        <p th:if="${status == 404}">La página no existe.</p>
+        <p th:if="${status == 403}">No tiene permiso para realizar esta acción.</p>
+        <p th:if="${status != 404 and status != 403}">
+            Error <span th:text="${status}"></span>: <span th:text="${message != null and message != '' ? message : 'error inesperado'}"></span>
+        </p>
+        <a class="btn btn-ampar" th:href="@{/}">Volver al inicio</a>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Usuario')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo" th:text="${u['ID_USUARIO'] == null} ? 'Nuevo usuario' : 'Modificar usuario'">Usuario</h1>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+    <div class="tarjeta" style="max-width: 820px;">
+        <form th:action="@{/seguridad/usuarios/guardar}" method="post" class="row g-3">
+            <input type="hidden" name="id" th:value="${u['ID_USUARIO']}">
+            <div class="col-md-6"><label class="form-label">Nombre de usuario *</label>
+                <input class="form-control" name="nombreUsuario" th:value="${u['NOMBRE_USUARIO']}" required
+                       th:readonly="${u['ID_USUARIO'] != null}"></div>
+            <div class="col-md-6"><label class="form-label">Nombre completo *</label>
+                <input class="form-control" name="nombreCompleto" th:value="${u['NOMBRE_COMPLETO']}" required></div>
+            <div class="col-md-6"><label class="form-label">Rol *</label>
+                <select class="form-select" name="idRol" required>
+                    <option th:each="r : ${roles}" th:value="${r['ID_ROL']}" th:text="${r['NOMBRE']}"
+                            th:selected="${#strings.toString(r['ID_ROL']) == #strings.toString(u['ID_ROL'])}"></option>
+                </select></div>
+            <div class="col-md-6"><label class="form-label" th:text="${u['ID_USUARIO'] == null} ? 'Contraseña *' : 'Nueva contraseña (dejar vacío para no cambiarla)'"></label>
+                <input class="form-control" type="password" name="clave" th:required="${u['ID_USUARIO'] == null}" minlength="6"></div>
+            <div class="col-md-6" th:if="${u['ID_USUARIO'] != null}"><label class="form-label">Estado</label>
+                <select class="form-select" name="estado">
+                    <option value="A" th:selected="${u['ESTADO'] == 'A'}">Activo</option>
+                    <option value="I" th:selected="${u['ESTADO'] == 'I'}">Inactivo (baja)</option>
+                </select></div>
+            <th:block th:if="${u['ID_USUARIO'] == null}">
+                <div class="col-12"><p class="small text-muted mb-0">Si el rol es CLIENTE, NEGOCIO o REPARTIDOR, seleccione a quién pertenece el usuario.</p></div>
+                <div class="col-md-4"><label class="form-label">Cliente</label>
+                    <select class="form-select" name="idCliente"><option value="">--</option>
+                        <option th:each="o : ${clientes}" th:value="${o['ID']}" th:text="${o['TEXTO']}"></option></select></div>
+                <div class="col-md-4"><label class="form-label">Negocio</label>
+                    <select class="form-select" name="idNegocio"><option value="">--</option>
+                        <option th:each="o : ${negocios}" th:value="${o['ID']}" th:text="${o['TEXTO']}"></option></select></div>
+                <div class="col-md-4"><label class="form-label">Repartidor</label>
+                    <select class="form-select" name="idRepartidor"><option value="">--</option>
+                        <option th:each="o : ${repartidores}" th:value="${o['ID']}" th:text="${o['TEXTO']}"></option></select></div>
+            </th:block>
+            <div class="col-12"><button class="btn btn-ampar" type="submit">Guardar</button>
+                <a class="btn btn-outline-secondary" th:href="@{/seguridad/usuarios}">Cancelar</a></div>
+        </form>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

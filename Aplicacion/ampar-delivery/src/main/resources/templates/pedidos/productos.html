@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head(${negocio['NOMBRE']})}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <a th:href="@{/pedidos/nuevo}">&larr; Volver a los negocios</a>
+    <h1 class="titulo mt-2" th:text="${negocio['NOMBRE']}">Negocio</h1>
+    <p class="subtitulo">Paso 2 de 3: escriba la cantidad de cada producto que desea.
+        <span th:if="${negocio['ABIERTO'] != 'S'}" class="badge bg-secondary">El negocio está cerrado ahora; no podrá confirmar el pedido.</span></p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+    <div class="row g-3">
+        <div class="col-lg-8">
+            <form class="tarjeta" th:action="@{/pedidos/nuevo/pago}" method="post">
+                <input type="hidden" name="idNegocio" th:value="${negocio['ID_NEGOCIO']}">
+                <table class="table align-middle">
+                    <thead><tr><th>Producto</th><th>Categoría</th><th class="text-end">Precio</th><th style="width: 110px;">Cantidad</th></tr></thead>
+                    <tbody>
+                    <tr th:each="pr : ${productos}">
+                        <td><strong th:text="${pr['PRODUCTO']}"></strong><br><span class="small text-muted" th:text="${pr['DESCRIPCION']}"></span></td>
+                        <td th:text="${pr['CATEGORIA']}"></td>
+                        <td class="text-end" th:text="'Q' + ${#numbers.formatDecimal(pr['PRECIO'], 1, 'COMMA', 2, 'POINT')}"></td>
+                        <td><input class="form-control" type="number" min="0" max="99" value="0" th:name="'cant_' + ${pr['ID_PRODUCTO']}"></td>
+                    </tr>
+                    <tr th:if="${productos.isEmpty()}"><td colspan="4" class="text-muted">Este negocio no tiene productos disponibles.</td></tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-ampar" type="submit">Continuar al pago</button>
+            </form>
+        </div>
+        <div class="col-lg-4">
+            <div class="tarjeta">
+                <h6>Horario y días de entrega</h6>
+                <table class="table table-sm mb-0">
+                    <tr th:each="h : ${horario}">
+                        <td th:text="${h['DIA']}"></td>
+                        <td th:text="${h['HACE_ENTREGA'] == 'S'} ? ${h['HORA_APERTURA']} + ' - ' + ${h['HORA_CIERRE']} : 'No entrega'"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

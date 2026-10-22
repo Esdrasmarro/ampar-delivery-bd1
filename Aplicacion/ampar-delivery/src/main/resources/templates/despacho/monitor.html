@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Monitor de pedidos')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Monitor de pedidos</h1>
+    <p class="subtitulo">Gestión centralizada de órdenes en proceso. Se actualiza cada 30 segundos.</p>
+    <div class="row g-3">
+        <div class="col-xl-7">
+            <div class="tarjeta">
+                <table class="table table-sm table-hover align-middle mb-0">
+                    <thead><tr><th>No.</th><th>Hora</th><th>Negocio</th><th>Cliente / Zona</th><th>Estado</th><th>Repartidor</th><th>Ruta / llegada</th><th class="text-end">Total</th></tr></thead>
+                    <tbody>
+                    <tr th:each="p : ${pedidos}" th:classappend="${p['ZONA_ROJA'] == 'S'} ? 'zona-roja'">
+                        <td th:text="${p['ID_PEDIDO']}"></td>
+                        <td th:text="${#dates.format(p['FECHA_PEDIDO'], 'dd/MM HH:mm')}"></td>
+                        <td th:text="${p['NEGOCIO']}"></td>
+                        <td><span th:text="${p['CLIENTE']}"></span><br><span class="small text-muted" th:text="${p['ZONA']} + ' - ' + ${p['MUNICIPIO']}"></span></td>
+                        <td><span class="badge bg-primary" th:text="${p['ESTADO']}"></span></td>
+                        <td th:text="${p['REPARTIDOR']}"></td>
+                        <td class="small" th:text="${p['RUTA_KM'] != null} ? ${p['RUTA_KM']} + ' km · ' + ${p['MINUTOS_ESTIMADOS']} + ' min' : '—'"></td>
+                        <td class="text-end" th:text="'Q' + ${p['TOTAL']}"></td>
+                    </tr>
+                    <tr th:if="${pedidos.isEmpty()}"><td colspan="8" class="text-muted text-center">No hay pedidos en proceso.</td></tr>
+                    </tbody>
+                </table>
+                <a class="btn btn-sm btn-ampar mt-3" th:href="@{/despacho/asignar}">Ir a asignar repartidores</a>
+            </div>
+        </div>
+        <div class="col-xl-5">
+            <div class="tarjeta">
+                <h5>Repartidores</h5>
+                <div id="mapa" class="mapa mb-2"></div>
+                <span class="badge bg-success">Disponible</span> <span class="badge bg-secondary">Ocupado</span>
+                <span class="badge" style="background:#f28c28">Entrega pendiente</span>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script th:inline="javascript">    var repartidores = /*[[${repartidores}]]*/ [];
+    var pedidos = /*[[${pedidos}]]*/ [];
+    var mapa = crearMapa('mapa', CENTRO_GUATEMALA, 12);
+    repartidores.forEach(function (r) {
+        punto(mapa, r.LATITUD, r.LONGITUD, r.DISPONIBLE === 'S' ? '#198754' : '#6c757d',
+              r.NOMBRE + ' (' + r.VEHICULO + ')');
+    });
+    pedidos.forEach(function (p) {
+        punto(mapa, p.LAT_ENTREGA, p.LON_ENTREGA, '#f28c28', 'Pedido ' + p.ID_PEDIDO + ' - ' + p.ESTADO);
+    });
+    setTimeout(function () { location.reload(); }, 30000);
+</script>
+</body>
+</html>

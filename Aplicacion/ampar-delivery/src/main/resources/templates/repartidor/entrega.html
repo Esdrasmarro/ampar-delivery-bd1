@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Mi entrega')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Mi entrega</h1>
+    <p class="subtitulo">Estado: <strong th:text="${yo['DISPONIBLE'] == 'S'} ? 'Disponible para recibir pedidos' : 'Con un pedido asignado'"></strong></p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+
+    <div class="tarjeta" th:if="${p == null}">
+        <p class="mb-0">No tiene pedidos asignados en este momento. Mantenga su ubicación actualizada para recibir pedidos cercanos.</p>
+    </div>
+
+    <div class="row g-3" th:if="${p != null}">
+        <div class="col-lg-6">
+            <div class="tarjeta" th:classappend="${p['ZONA_ROJA'] == 'S'} ? 'zona-roja'">
+                <h5>Pedido <span th:text="${p['ID_PEDIDO']}"></span> <span class="badge bg-primary" th:text="${p['ESTADO']}"></span></h5>
+                <div class="alert alert-danger py-2" th:if="${p['ZONA_ROJA'] == 'S'}">Atención: entrega en ZONA ROJA.</div>
+                <p class="mb-1"><strong>Recoger en:</strong> <span th:text="${p['NEGOCIO']}"></span></p>
+                <p class="mb-1"><strong>Entregar a:</strong> <span th:text="${p['CLIENTE']}"></span> · Tel. <span th:text="${p['TELEFONO_CLIENTE']}"></span></p>
+                <p class="mb-1"><strong>Dirección:</strong> <span th:text="${p['DIRECCION_ENTREGA']}"></span> (<span th:text="${p['ZONA']}"></span>)</p>
+                <p class="mb-1 small text-muted" th:text="'Referencia: ' + ${p['REFERENCIA']}" th:if="${p['REFERENCIA'] != null}"></p>
+                <p class="mb-2"><strong>Cobrar:</strong>
+                    <span th:if="${p['ESTADO_PAGO'] == 'PAGADO'}">Ya pagado con tarjeta</span>
+                    <span th:if="${p['ESTADO_PAGO'] != 'PAGADO'}" th:text="'Q' + ${p['TOTAL']} + ' en efectivo'"></span></p>
+                <ul class="small"><li th:each="l : ${lineas}" th:text="${l['CANTIDAD']} + ' x ' + ${l['PRODUCTO']}"></li></ul>
+                <div class="alert alert-info py-2" th:if="${ruta != null and ruta['RUTA_KM'] != null}">
+                    <strong>Ruta sugerida</strong>
+                    <ol class="mb-1 small" th:if="${p['ESTADO'] == 'ASIGNADO'}">
+                        <li th:text="'Ir al negocio a recoger: ' + ${ruta['AL_NEGOCIO']} + ' km'"></li>
+                        <li th:text="'Entregar al cliente: ' + ${ruta['AL_CLIENTE']} + ' km'"></li>
+                    </ol>
+                    <ol class="mb-1 small" th:if="${p['ESTADO'] != 'ASIGNADO'}">
+                        <li th:text="'Ir directo al cliente: ' + ${ruta['RUTA_KM']} + ' km'"></li>
+                    </ol>
+                    <span class="small" th:text="'Total: ' + ${ruta['RUTA_KM']} + ' km · llegada estimada en ' + ${ruta['MINUTOS_ESTIMADOS']} + ' minutos'"></span>
+                </div>
+                <form th:action="@{/repartidor/entrega/estado}" method="post">
+                    <input type="hidden" name="idPedido" th:value="${p['ID_PEDIDO']}">
+                    <input type="hidden" name="estado" th:value="${siguiente}">
+                    <button class="btn btn-ampar btn-lg w-100" type="submit" th:text="'Marcar como ' + ${siguiente}"></button>
+                </form>
+            </div>
+            <div class="tarjeta">
+                <h6>Cancelar esta entrega</h6>
+                <form class="row g-2" th:action="@{/repartidor/entrega/cancelar}" method="post">
+                    <input type="hidden" name="idPedido" th:value="${p['ID_PEDIDO']}">
+                    <div class="col-md-6"><select class="form-select form-select-sm" name="idMotivo" required>
+                        <option th:each="m : ${motivos}" th:value="${m['ID_MOTIVO']}" th:text="${m['DESCRIPCION']}"></option></select></div>
+                    <div class="col-md-6"><input class="form-control form-control-sm" name="observacion" placeholder="Observación"></div>
+                    <div class="col-12"><button class="btn btn-sm btn-outline-danger" type="submit">Cancelar entrega</button>
+                        <span class="small text-muted">El pedido se asignará a otro repartidor.</span></div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="tarjeta">
+                <h5>Mapa</h5>
+                <div id="mapa" class="mapa"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <h5>Mi ubicación</h5>
+        <p class="small text-muted">Última actualización:
+            <span th:text="${yo['FECHA_UBICACION'] != null} ? ${#dates.format(yo['FECHA_UBICACION'], 'dd/MM/yyyy HH:mm')} : 'nunca'"></span>.
+            Use el botón para tomar la ubicación del dispositivo o haga clic en el mapa.</p>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="automatica" checked>
+            <label class="form-check-label small" for="automatica">Enviar mi ubicación automáticamente cada 30 segundos (tracking en tiempo real)</label>
+            <div class="small text-muted" id="estadoUbicacion"></div>
+        </div>
+        <form class="row g-2 align-items-end" th:action="@{/repartidor/entrega/ubicacion}" method="post">
+            <div class="col-md-3"><label class="form-label small">Latitud</label><input class="form-control" id="latitud" name="latitud" th:value="${yo['LATITUD']}" required></div>
+            <div class="col-md-3"><label class="form-label small">Longitud</label><input class="form-control" id="longitud" name="longitud" th:value="${yo['LONGITUD']}" required></div>
+            <div class="col-auto"><button class="btn btn-outline-secondary" type="button" onclick="usarMiUbicacion()">Usar mi ubicación</button></div>
+            <div class="col-auto"><button class="btn btn-ampar" type="submit">Enviar ubicación</button></div>
+        </form>
+    </div>
+
+    <div class="tarjeta">
+        <h5>Mis últimas entregas</h5>
+        <table class="table table-sm mb-0">
+            <tr th:each="u : ${ultimas}"><td th:text="${u['ID_PEDIDO']}"></td>
+                <td th:text="${#dates.format(u['FECHA_PEDIDO'], 'dd/MM/yyyy')}"></td>
+                <td th:text="${u['NEGOCIO']}"></td><td th:text="${u['ZONA']}"></td><td th:text="'Q' + ${u['TOTAL']}"></td></tr>
+        </table>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script th:inline="javascript">    var p = /*[[${p}]]*/ null;
+    var yo = /*[[${yo}]]*/ {};
+    function usarMiUbicacion() {
+        if (!navigator.geolocation) { return; }
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            document.getElementById('latitud').value = pos.coords.latitude.toFixed(6);
+            document.getElementById('longitud').value = pos.coords.longitude.toFixed(6);
+        });
+    }
+    function enviarUbicacion(lat, lon) {
+        var datos = new URLSearchParams({latitud: lat.toFixed(6), longitud: lon.toFixed(6)});
+        return fetch('/repartidor/entrega/ubicacion-auto', {method: 'POST', body: datos})
+            .then(function (r) { return r.text(); })
+            .then(function (t) {
+                document.getElementById('estadoUbicacion').textContent = (t === 'OK')
+                    ? 'Ubicación enviada a las ' + new Date().toLocaleTimeString() : t;
+                return t;
+            });
+    }
+    function ubicacionAutomatica() {
+        if (!document.getElementById('automatica').checked) return;
+        if (!navigator.geolocation) {
+            document.getElementById('estadoUbicacion').textContent = 'Este dispositivo no permite tomar la ubicación.';
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(
+            function (pos) { enviarUbicacion(pos.coords.latitude, pos.coords.longitude); },
+            function () { document.getElementById('estadoUbicacion').textContent = 'No se pudo leer la ubicación del dispositivo (revise el permiso).'; });
+    }
+    ubicacionAutomatica();
+    setInterval(ubicacionAutomatica, 30000);
+
+    if (p) {
+        var mapa = crearMapa('mapa', [p.LAT_NEGOCIO, p.LON_NEGOCIO], 13);
+        var puntos = [];
+        if (yo.LATITUD !== null) { punto(mapa, yo.LATITUD, yo.LONGITUD, '#198754', 'Yo'); puntos.push([yo.LATITUD, yo.LONGITUD]); }
+        punto(mapa, p.LAT_NEGOCIO, p.LON_NEGOCIO, '#1f5c99', 'Negocio: ' + p.NEGOCIO); puntos.push([p.LAT_NEGOCIO, p.LON_NEGOCIO]);
+        punto(mapa, p.LAT_ENTREGA, p.LON_ENTREGA, '#f28c28', 'Entrega'); puntos.push([p.LAT_ENTREGA, p.LON_ENTREGA]);
+        var ruta = (p.ESTADO === 'ASIGNADO' || puntos.length < 3) ? puntos : [puntos[0], puntos[2]];
+        L.polyline(ruta, {color: '#1f5c99', dashArray: '6 6'}).addTo(mapa);
+        mapa.fitBounds(puntos, {padding: [30, 30]});
+        mapa.on('click', function (e) {
+            document.getElementById('latitud').value = e.latlng.lat.toFixed(6);
+            document.getElementById('longitud').value = e.latlng.lng.toFixed(6);
+        });
+    }
+</script>
+</body>
+</html>

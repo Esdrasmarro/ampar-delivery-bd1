@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Opciones de menú')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Opciones de menú</h1>
+    <p class="subtitulo" th:text="${fila['ID_MENU'] == null} ? 'Nuevo registro (alta)' : 'Modificar el registro No. ' + ${fila['ID_MENU']} + ' (cambio)'"></p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+
+    <div class="tarjeta" style="max-width: 900px;">
+        <form th:action="@{/seguridad/menus/guardar}" method="post" class="row g-3">
+            <input type="hidden" name="id" th:value="${fila['ID_MENU']}">
+            <div class="col-md-6">
+                <label class="form-label" for="idModulo">Módulo<span class="text-danger"> *</span></label>
+                <select class="form-select" id="idModulo" name="idModulo" required>
+                    <option value="">-- Seleccione --</option>
+                    <option th:each="o : ${modulos}" th:value="${o['ID']}" th:text="${o['TEXTO']}"
+                            th:selected="${#strings.toString(o['ID']) == #strings.toString(fila['ID_MODULO'])}"></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="nombre">Texto en el menú<span class="text-danger"> *</span></label>
+                <input class="form-control" type="text" id="nombre" name="nombre" th:value="${fila['NOMBRE']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="url">Dirección (URL)<span class="text-danger"> *</span></label>
+                <input class="form-control" type="text" id="url" name="url" th:value="${fila['URL']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="orden">Orden<span class="text-danger"> *</span></label>
+                <input class="form-control" type="number" step="1" id="orden" name="orden" th:value="${fila['ORDEN']}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="estado">Estado<span class="text-danger"> *</span></label>
+                <select class="form-select" id="estado" name="estado" required>
+                    <option value="A" th:selected="${#strings.toString(fila['ESTADO']) == 'A'}">Activo</option>
+                    <option value="I" th:selected="${#strings.toString(fila['ESTADO']) == 'I'}">Inactivo</option>
+                </select>
+            </div>
+            <div class="col-12 d-flex gap-2">
+                <button class="btn btn-ampar" type="submit">Guardar</button>
+                <a class="btn btn-outline-secondary" th:href="@{/seguridad/menus}">Cancelar</a>
+            </div>
+        </form>
+        <form th:if="${fila['ID_MENU'] != null}" class="mt-4 pt-3 border-top" th:action="@{/seguridad/menus/baja/{id}(id=${fila['ID_MENU']})}" method="post">
+            <p class="small text-muted mb-2">Dar de baja cambia el estado a inactivo (baja lógica); el registro no se borra.</p>
+            <button class="btn btn-outline-danger btn-sm" type="submit">Dar de baja</button>
+        </form>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

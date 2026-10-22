@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Asignar repartidor')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Asignar repartidor</h1>
+    <p class="subtitulo">Pedidos confirmados sin repartidor. La asignación automática elige al repartidor disponible más cercano
+        al negocio (fórmula de Haversine), hasta <span th:text="${kmLimite}"></span> km.</p>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+    <p class="text-muted" th:if="${pendientes.isEmpty()}">No hay pedidos pendientes de asignación.</p>
+    <div class="tarjeta" th:each="p : ${pendientes}" th:classappend="${p['ZONA_ROJA'] == 'S'} ? 'zona-roja'">
+        <div class="row align-items-center">
+            <div class="col-md-5">
+                <h6 class="mb-1">Pedido <span th:text="${p['ID_PEDIDO']}"></span> · <span th:text="${p['NEGOCIO']}"></span></h6>
+                <div class="small text-muted"><span th:text="${p['CLIENTE']}"></span> · <span th:text="${p['ZONA']} + ' - ' + ${p['MUNICIPIO']}"></span>
+                    <strong class="text-danger" th:if="${p['ZONA_ROJA'] == 'S'}"> · ZONA ROJA</strong></div>
+            </div>
+            <div class="col-md-2">
+                <form th:action="@{/despacho/asignar/{id}/auto(id=${p['ID_PEDIDO']})}" method="post">
+                    <button class="btn btn-sm btn-ampar" type="submit">Automática</button>
+                </form>
+            </div>
+            <div class="col-md-5">
+                <form class="d-flex gap-2" th:action="@{/despacho/asignar/{id}/manual(id=${p['ID_PEDIDO']})}" method="post">
+                    <select class="form-select form-select-sm" name="idRepartidor" required>
+                        <option th:each="r : ${cercanos.get(p['ID_PEDIDO'])}" th:value="${r['ID_REPARTIDOR']}"
+                                th:text="${r['NOMBRE']} + ' (' + ${r['DISTANCIA']} + ' km)'"></option>
+                    </select>
+                    <button class="btn btn-sm btn-outline-primary" type="submit">Manual</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

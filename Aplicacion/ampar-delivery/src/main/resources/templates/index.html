@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Inicio')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido-publico">
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+    <div class="portada mb-4">
+        <h1 class="fw-bold">Ampar Delivery</h1>
+        <p class="lead mb-4">Pedidos a domicilio de los negocios afiliados de la Ciudad de Guatemala:
+            repuestos, restaurantes, comida a domicilio y más. Seguimiento en tiempo real y pago con tarjeta o efectivo.</p>
+        <a class="btn btn-ampar btn-lg me-2" th:href="@{/login}">Iniciar sesión</a>
+        <a class="btn btn-outline-light btn-lg me-2" th:href="@{/registro}">Crear cuenta de cliente</a>
+        <a class="btn btn-outline-light btn-lg" th:href="@{/afiliacion}">Afiliar mi negocio</a>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-4"><div class="tarjeta h-100"><h5>1. Elija un negocio</h5>
+            <p class="mb-0 text-muted">Vea el catálogo digital de los negocios abiertos y arme su pedido.</p></div></div>
+        <div class="col-md-4"><div class="tarjeta h-100"><h5>2. Pague</h5>
+            <p class="mb-0 text-muted">Con tarjeta en línea al hacer el pedido o en efectivo al recibirlo. Envío: Q25.</p></div></div>
+        <div class="col-md-4"><div class="tarjeta h-100"><h5>3. Siga su pedido</h5>
+            <p class="mb-0 text-muted">El repartidor más cercano lo lleva. Vea su ubicación en el mapa y reciba avisos por SMS y WhatsApp.</p></div></div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>

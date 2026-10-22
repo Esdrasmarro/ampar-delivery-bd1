@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head(${tabla.titulo})}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h1 class="titulo" th:text="${tabla.titulo}">Consulta</h1>
+            <p class="subtitulo" th:text="${tabla.descripcion}"></p>
+        </div>
+        <div class="d-flex gap-2">
+            <a id="exportarExcel" class="btn btn-outline-success" href="#">Exportar a Excel</a>
+            <a id="exportarPdf" class="btn btn-outline-danger" href="#">Exportar a PDF</a>
+        </div>
+    </div>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+
+    <form class="tarjeta row g-2 align-items-end" method="get" th:if="${!filtros.isEmpty()}">
+        <div class="col-md-2" th:each="f : ${filtros}">
+            <label class="form-label small mb-1" th:text="${f.etiqueta}">Filtro</label>
+            <input th:if="${f.tipo == 'fecha'}" type="date" class="form-control form-control-sm" th:name="${f.nombre}" th:value="${f.valor}">
+            <input th:if="${f.tipo == 'texto'}" class="form-control form-control-sm" th:name="${f.nombre}" th:value="${f.valor}">
+            <select th:if="${f.tipo == 'lista'}" class="form-select form-select-sm" th:name="${f.nombre}">
+                <option value="" th:if="${f.nombre != 'nivel' and f.nombre != 'soloRojas'}">Todos</option>
+                <option th:each="o : ${f.opciones}" th:value="${o['ID']}" th:text="${o['TEXTO']}"
+                        th:selected="${#strings.toString(o['ID']) == f.valor}"></option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-sm btn-primary" type="submit">Filtrar</button>
+            <a class="btn btn-sm btn-link" th:href="@{${rutaActual}}">Limpiar</a>
+        </div>
+    </form>
+
+    <div class="tarjeta" th:if="${tabla.tieneGrafico()}">
+        <h5 th:text="${tabla.tituloGrafico}">Gráfico</h5>
+        <div th:style="'height:' + (${tabla.etiquetas.size()} * 32 + 60) + 'px'"><canvas id="grafico"></canvas></div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="text-muted small mb-2" th:text="${tabla.filas.size()} + ' registro(s)'"></div>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle">
+                <thead><tr><th th:each="c : ${tabla.columnas}" th:text="${c[1]}"></th></tr></thead>
+                <tbody>
+                <tr th:each="f : ${tabla.filas}" th:classappend="${f['ZONA_ROJA'] == 'S'} ? 'zona-roja'">
+                    <td th:each="c : ${tabla.columnas}"
+                        th:text="${f[c[0]] instanceof T(java.util.Date) ? #dates.format(f[c[0]], 'dd/MM/yyyy HH:mm') : f[c[0]]}"></td>
+                </tr>
+                <tr th:if="${tabla.filas.isEmpty()}"><td colspan="20" class="text-center text-muted">No hay datos con esos filtros.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script th:src="@{/lib/chartjs/chart.umd.js}"></script>
+<script th:inline="javascript">    var q = new URLSearchParams(window.location.search);
+    q.set('formato', 'excel');
+    document.getElementById('exportarExcel').href = '?' + q.toString();
+    q.set('formato', 'pdf');
+    document.getElementById('exportarPdf').href = '?' + q.toString();
+
+    var etiquetas = /*[[${tabla.etiquetas}]]*/ [];
+    var valores = /*[[${tabla.valores}]]*/ [];
+    var lienzo = document.getElementById('grafico');
+    if (lienzo && etiquetas.length > 0) {
+        new Chart(lienzo, {
+            type: 'bar',
+            data: {labels: etiquetas, datasets: [{label: /*[[${tabla.tituloGrafico}]]*/ '', data: valores,
+                    backgroundColor: valores.map(function (v, i) { return i === 0 ? '#f28c28' : '#1f5c99'; })}]},
+            options: {indexAxis: 'y', maintainAspectRatio: false, plugins: {legend: {display: false}}}
+        });
+    }
+</script>
+</body>
+</html>

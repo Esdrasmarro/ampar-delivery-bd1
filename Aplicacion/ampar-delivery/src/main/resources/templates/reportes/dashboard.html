@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Dashboard')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <h1 class="titulo">Dashboard gerencial</h1>
+    <p class="subtitulo">Indicadores del día y reportes estadísticos. Cada reporte se puede abrir y exportar a Excel o PDF.</p>
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="${ind['PEDIDOS_HOY']}">0</div><div class="nombre">Pedidos de hoy</div></div></div>
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="'Q' + ${#numbers.formatDecimal(ind['VENTAS_HOY'], 1, 'COMMA', 2, 'POINT')}">Q0</div><div class="nombre">Ventas entregadas hoy</div></div></div>
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="${ind['PEDIDOS_ACTIVOS']}">0</div><div class="nombre">Pedidos en proceso</div></div></div>
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="${ind['REPARTIDORES_DISPONIBLES']}">0</div><div class="nombre">Repartidores disponibles</div></div></div>
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="${ind['ENTREGADOS_HOY']}">0</div><div class="nombre">Entregados hoy</div></div></div>
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="${ind['CANCELADOS_HOY']}">0</div><div class="nombre">Cancelados hoy</div></div></div>
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="${ind['NEGOCIOS_ACTIVOS']}">0</div><div class="nombre">Negocios activos</div></div></div>
+        <div class="col-md-3"><div class="indicador"><div class="valor" th:text="${ind['SOLICITUDES_PENDIENTES']}">0</div><div class="nombre">Solicitudes de afiliación</div></div></div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-lg-6"><div class="tarjeta h-100">
+            <div class="d-flex justify-content-between"><h5>Repartidores con más entregas</h5>
+                <a th:href="@{/reportes/entregas-area}">Ver reporte</a></div>
+            <div style="height: 300px"><canvas id="g1"></canvas></div></div></div>
+        <div class="col-lg-6"><div class="tarjeta h-100">
+            <div class="d-flex justify-content-between"><h5>Repartidores que cancelan</h5>
+                <a th:href="@{/reportes/cancelaciones-repartidor}">Ver reporte</a></div>
+            <div style="height: 300px"><canvas id="g2"></canvas></div></div></div>
+        <div class="col-lg-8"><div class="tarjeta h-100">
+            <div class="d-flex justify-content-between"><h5>Pedidos por zona</h5>
+                <a th:href="@{/reportes/zonas}">Ver reporte</a></div>
+            <div style="height: 300px"><canvas id="g3"></canvas></div></div></div>
+        <div class="col-lg-4"><div class="tarjeta h-100">
+            <h5>Zonas rojas</h5>
+            <table class="table table-sm">
+                <thead><tr><th>Zona</th><th>Pedidos</th><th>Canc.</th><th>Canc. rep.</th></tr></thead>
+                <tbody><tr th:each="z : ${zonasRojas}" class="zona-roja">
+                    <td th:text="${z['ZONA']} + ' (' + ${z['MUNICIPIO']} + ')'"></td>
+                    <td th:text="${z['PEDIDOS']}"></td><td th:text="${z['CANCELADOS']}"></td>
+                    <td th:text="${z['CANCELACIONES_REPARTIDOR']}"></td></tr></tbody>
+            </table></div></div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+<script th:src="@{/lib/chartjs/chart.umd.js}"></script>
+<script th:inline="javascript">    function barras(id, etiquetas, valores, horizontal) {
+        new Chart(document.getElementById(id), {
+            type: 'bar',
+            data: {labels: etiquetas, datasets: [{data: valores,
+                    backgroundColor: valores.map(function (v, i) { return i === 0 ? '#f28c28' : '#1f5c99'; })}]},
+            options: {indexAxis: horizontal ? 'y' : 'x', maintainAspectRatio: false, plugins: {legend: {display: false}}}
+        });
+    }
+    barras('g1', /*[[${entregas.etiquetas}]]*/ [], /*[[${entregas.valores}]]*/ [], true);
+    barras('g2', /*[[${cancelaciones.etiquetas}]]*/ [], /*[[${cancelaciones.valores}]]*/ [], true);
+    barras('g3', /*[[${zonas.etiquetas}]]*/ [], /*[[${zonas.valores}]]*/ [], false);
+</script>
+</body>
+</html>

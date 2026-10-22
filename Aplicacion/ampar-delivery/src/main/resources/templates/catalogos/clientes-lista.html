@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/base :: head('Clientes')}"></head>
+<body>
+<div th:replace="~{fragmentos/base :: menu}"></div>
+<main class="contenido">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h1 class="titulo">Clientes</h1>
+            <p class="subtitulo"></p>
+        </div>
+        <a class="btn btn-ampar" th:href="@{/catalogos/clientes/nuevo}">+ Nuevo</a>
+    </div>
+    <div th:replace="~{fragmentos/base :: mensajes}"></div>
+
+    <div class="tarjeta">
+        <form class="row g-2 mb-3" method="get" th:action="@{/catalogos/clientes}">
+            <div class="col-md-5"><input class="form-control" name="buscar" th:value="${buscar}" placeholder="Buscar..."></div>
+            <div class="col-auto"><button class="btn btn-outline-primary" type="submit">Buscar</button></div>
+            <div class="col-auto"><a class="btn btn-link" th:href="@{/catalogos/clientes}">Ver todos</a></div>
+            <div class="col text-end text-muted small align-self-center" th:text="${filas.size()} + ' registro(s)'"></div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-sm align-middle">
+                <thead>
+                <tr><th>No.</th><th>Nombres</th><th>Apellidos</th><th>Teléfono</th><th>Correo</th><th>Estado</th><th></th></tr>
+                </thead>
+                <tbody>
+                <tr th:each="f : ${filas}">
+                    <td th:text="${f['ID_CLIENTE']}"></td>
+                    <td th:text="${f['NOMBRES']}"></td>
+                    <td th:text="${f['APELLIDOS']}"></td>
+                    <td th:text="${f['TELEFONO']}"></td>
+                    <td th:text="${f['CORREO']}"></td>
+                    <td><span th:text="${f['ESTADO'] == 'A'} ? 'Activo' : 'Inactivo'" th:classappend="${f['ESTADO'] == 'I'} ? 'badge bg-secondary'"></span></td>
+                    <td class="text-end"><a class="btn btn-sm btn-outline-primary" th:href="@{/catalogos/clientes/editar/{id}(id=${f['ID_CLIENTE']})}">Editar</a></td>
+                </tr>
+                <tr th:if="${filas.isEmpty()}"><td colspan="20" class="text-center text-muted">No hay registros.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragmentos/base :: scripts}"></div>
+</body>
+</html>
