@@ -11,3 +11,7 @@ target/
 *.tmp
 Thumbs.db
 desktop.ini
+
+# Video (pesa demasiado para GitHub; se entrega en Drive)
+Video/
+*.mp4

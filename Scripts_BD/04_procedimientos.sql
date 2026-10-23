@@ -1,20 +1,4 @@
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Script 04: procedimientos almacenados
--- Ejecutar conectado como: AMPAR
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
--- Un procedimiento ejecuta una tarea (INSERT, UPDATE, validaciones) y no devuelve
--- un valor directamente (puede devolver datos con parámetros OUT).
--- Los procedimientos de los movimientos principales están en los paquetes (script 07).
-
--- ---------------------------------------------------------------------
--- pr_bitacora: guarda un evento en la bitácora.
--- La usan los triggers de bitácora y el inicio de sesión.
--- El usuario es el de la aplicación (CLIENT_IDENTIFIER que la aplicación coloca
--- en la sesión); si no hay, se guarda el usuario de Oracle.
--- No hace COMMIT: el evento queda en la misma transacción de la operación.
--- ---------------------------------------------------------------------
+-- Script 04: procedimientos. Ejecutar como AMPAR
 CREATE OR REPLACE PROCEDURE pr_bitacora (
     p_tabla       IN VARCHAR2,
     p_operacion   IN VARCHAR2,
@@ -34,10 +18,6 @@ BEGIN
 END pr_bitacora;
 /
 
--- ---------------------------------------------------------------------
--- pr_actualizar_ubicacion: el repartidor envía su ubicación (tracking).
--- Transacción: UPDATE + COMMIT; si falla, ROLLBACK.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE pr_actualizar_ubicacion (
     p_id_repartidor IN NUMBER,
     p_latitud       IN NUMBER,

@@ -1,16 +1,4 @@
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Script 08: vistas
--- Ejecutar conectado como: AMPAR
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
--- Una vista es una "consulta con nombre" (CREATE VIEW nombre AS consulta).
--- La aplicación usa estas vistas para el menú, las consultas en pantalla
--- y los reportes, sin repetir los JOIN en el código.
-
--- ---------------------------------------------------------------------
--- Menú de cada usuario según su rol (configuración del menú en la BD)
--- ---------------------------------------------------------------------
+-- Script 08: vistas. Ejecutar como AMPAR
 CREATE OR REPLACE VIEW vw_menu_usuario AS
 SELECT u.id_usuario,
        mo.id_modulo,
@@ -30,9 +18,6 @@ SELECT u.id_usuario,
    AND me.estado = 'A'
    AND mo.estado = 'A';
 
--- ---------------------------------------------------------------------
--- RG-01 Pedidos: datos completos de cada pedido (gestión centralizada de órdenes)
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_pedido AS
 SELECT p.id_pedido,
        p.fecha_pedido,
@@ -66,8 +51,8 @@ SELECT p.id_pedido,
        d.longitud AS lon_entrega,
        r.latitud  AS lat_repartidor,
        r.longitud AS lon_repartidor,
-       fn_ruta_km(p.id_pedido)                       AS ruta_km,           -- ruta del repartidor
-       fn_minutos_estimados(fn_ruta_km(p.id_pedido)) AS minutos_estimados  -- tiempo estimado de llegada
+       fn_ruta_km(p.id_pedido)                       AS ruta_km,
+       fn_minutos_estimados(fn_ruta_km(p.id_pedido)) AS minutos_estimados
   FROM pedido p
   JOIN cliente c            ON c.id_cliente        = p.id_cliente
   JOIN negocio n            ON n.id_negocio        = p.id_negocio
@@ -79,9 +64,6 @@ SELECT p.id_pedido,
   JOIN departamento de      ON de.id_departamento  = mu.id_departamento
   LEFT JOIN repartidor r    ON r.id_repartidor     = p.id_repartidor;
 
--- ---------------------------------------------------------------------
--- Tracking: historial de estados de cada pedido
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_tracking AS
 SELECT h.id_historial,
        h.id_pedido,
@@ -93,9 +75,6 @@ SELECT h.id_historial,
   FROM historial_estado h
   JOIN estado_pedido e ON e.id_estado_pedido = h.id_estado_pedido;
 
--- ---------------------------------------------------------------------
--- RG-02 Negocios con horarios, días de entrega y si están abiertos ahora
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_negocio_horario AS
 SELECT n.id_negocio,
        n.nombre  AS negocio,
@@ -120,9 +99,6 @@ SELECT n.id_negocio,
   JOIN municipio mu         ON mu.id_municipio   = z.id_municipio
   LEFT JOIN horario_negocio h ON h.id_negocio    = n.id_negocio;
 
--- ---------------------------------------------------------------------
--- RG-03 Catálogo digital de productos por negocio
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_catalogo_producto AS
 SELECT p.id_producto,
        p.nombre      AS producto,
@@ -142,9 +118,6 @@ SELECT p.id_producto,
  WHERE p.estado = 'A'
    AND n.estado = 'ACTIVO';
 
--- ---------------------------------------------------------------------
--- RG-04 Notificaciones enviadas por SMS y WhatsApp
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_notificacion AS
 SELECT nt.id_notificacion,
        nt.id_pedido,
@@ -158,9 +131,6 @@ SELECT nt.id_notificacion,
   JOIN pedido p  ON p.id_pedido  = nt.id_pedido
   JOIN cliente c ON c.id_cliente = p.id_cliente;
 
--- ---------------------------------------------------------------------
--- RG-05 Cancelaciones de pedidos con el monto cobrado (15 %)
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_cancelacion_pedido AS
 SELECT ca.id_cancelacion,
        ca.id_pedido,
@@ -182,9 +152,6 @@ SELECT ca.id_cancelacion,
   JOIN metodo_pago m         ON m.id_metodo_pago = p.id_metodo_pago
   JOIN motivo_cancelacion mo ON mo.id_motivo     = ca.id_motivo;
 
--- ---------------------------------------------------------------------
--- RG-06 Calificaciones y comentarios de los repartidores
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_calificacion AS
 SELECT ca.id_calificacion,
        ca.id_pedido,
@@ -199,9 +166,6 @@ SELECT ca.id_calificacion,
   JOIN repartidor r ON r.id_repartidor = p.id_repartidor
   JOIN cliente c    ON c.id_cliente    = p.id_cliente;
 
--- ---------------------------------------------------------------------
--- RE-01 Reporte: entregas de cada repartidor por departamento, municipio y zona
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_rep_entregas_area AS
 SELECT r.id_repartidor,
        r.nombres || ' ' || r.apellidos AS repartidor,
@@ -219,9 +183,6 @@ SELECT r.id_repartidor,
  WHERE e.nombre = 'ENTREGADO'
  GROUP BY r.id_repartidor, r.nombres, r.apellidos, de.nombre, mu.nombre, z.nombre;
 
--- ---------------------------------------------------------------------
--- RE-02 Reporte: repartidores que cancelan entregas y su calificación promedio
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_rep_cancelaciones_repartidor AS
 SELECT r.id_repartidor,
        r.nombres || ' ' || r.apellidos AS repartidor,
@@ -236,9 +197,6 @@ SELECT r.id_repartidor,
        fn_promedio_repartidor(r.id_repartidor) AS calificacion_promedio
   FROM repartidor r;
 
--- ---------------------------------------------------------------------
--- RE-03 Reporte: pedidos, entregas y cancelaciones por zona (zonas rojas)
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_rep_zonas AS
 SELECT z.id_zona,
        z.nombre  AS zona,
@@ -259,9 +217,6 @@ SELECT z.id_zona,
   LEFT JOIN estado_pedido e     ON e.id_estado_pedido = p.id_estado_pedido
  GROUP BY z.id_zona, z.nombre, mu.nombre, z.zona_roja;
 
--- ---------------------------------------------------------------------
--- Dashboard gerencial: indicadores del día
--- ---------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_dashboard AS
 SELECT (SELECT COUNT(*) FROM pedido
          WHERE TRUNC(fecha_pedido) = TRUNC(SYSDATE)) AS pedidos_hoy,

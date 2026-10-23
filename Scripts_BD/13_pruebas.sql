@@ -1,19 +1,8 @@
+-- Script 13: pruebas. Ejecutar como AMPAR
 SET DEFINE OFF
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Script 13: pruebas de la base de datos
--- Ejecutar conectado como: AMPAR (después de cargar los datos de prueba)
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
--- Cada bloque prueba una regla del negocio y escribe OK o FALLÓ.
--- Ejecutar con F5 (Ejecutar script) y revisar la pestaña "Salida de Script".
--- Las pruebas crean pedidos nuevos con el negocio 1 (abierto las 24 horas).
 
 SET SERVEROUTPUT ON
 
--- ---------------------------------------------------------------------
--- Prueba 1: inicio de sesión correcto y contraseña encriptada
--- ---------------------------------------------------------------------
 DECLARE
     v_id NUMBER; v_rol NUMBER; v_nombre_rol VARCHAR2(30); v_nombre VARCHAR2(100);
     v_c NUMBER; v_n NUMBER; v_r NUMBER;
@@ -31,9 +20,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 2: contraseña incorrecta (debe rechazarse y quedar en la bitácora)
--- ---------------------------------------------------------------------
 DECLARE
     v_id NUMBER; v_rol NUMBER; v_nombre_rol VARCHAR2(30); v_nombre VARCHAR2(100);
     v_c NUMBER; v_n NUMBER; v_r NUMBER;
@@ -50,9 +36,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 3: seguridad entre módulos (permisos del menú en la BD)
--- ---------------------------------------------------------------------
 DECLARE
     v_id_cliente NUMBER;
 BEGIN
@@ -68,15 +51,10 @@ BEGIN
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 4: función de distancia (Haversine) y horario de negocio
--- ---------------------------------------------------------------------
 DECLARE
     v_km NUMBER;
 BEGIN
-    -- de la Zona 1 a la Zona 10 hay unos 4.6 km en línea recta
     v_km := fn_distancia_km(14.6407, -90.5133, 14.6000, -90.5120);
-    -- el Comedor Doña Chepita no entrega en domingo
     IF v_km BETWEEN 4 AND 5
        AND fn_negocio_abierto(6, TRUNC(SYSDATE, 'IW') + 6 + 10/24) = 'N'
        AND fn_negocio_abierto(1) = 'S' THEN
@@ -87,9 +65,6 @@ BEGIN
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 5: TRANSACCIÓN - tarjeta rechazada: no debe quedar nada guardado
--- ---------------------------------------------------------------------
 DECLARE
     v_antes   NUMBER;
     v_despues NUMBER;
@@ -113,9 +88,6 @@ BEGIN
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 6: dirección fuera de la cobertura de 10 km (Villa Nueva)
--- ---------------------------------------------------------------------
 DECLARE
     v_id  NUMBER;
     v_msg VARCHAR2(400);
@@ -132,10 +104,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 7: pedido con tarjeta aprobada, asignación automática del
---           repartidor más cercano, historial y notificaciones
--- ---------------------------------------------------------------------
 DECLARE
     v_id     NUMBER;
     v_msg    VARCHAR2(400);
@@ -160,10 +128,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 8: el repartidor cancela la entrega y el pedido se reasigna
---           a otro repartidor (el que canceló queda excluido)
--- ---------------------------------------------------------------------
 DECLARE
     v_id        NUMBER;
     v_rep_antes NUMBER;
@@ -186,9 +150,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 9: no se puede saltar estados (ASIGNADO -> ENTREGADO)
--- ---------------------------------------------------------------------
 DECLARE
     v_id  NUMBER;
     v_rep NUMBER;
@@ -207,9 +168,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 10: flujo completo de la entrega y calificación del repartidor
--- ---------------------------------------------------------------------
 DECLARE
     v_id     NUMBER;
     v_rep    NUMBER;
@@ -233,7 +191,6 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('FALLÓ  Prueba 10');
     END IF;
 
-    -- no se puede calificar dos veces
     BEGIN
         pkg_pedido.pr_calificar(v_id, 2, 1, 'Segunda calificación');
         DBMS_OUTPUT.PUT_LINE('FALLÓ  Prueba 10b: permitió calificar dos veces');
@@ -246,10 +203,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 11: cancelación en efectivo dentro de los 5 minutos (zona roja).
---            El 15 % queda pendiente y se suma al siguiente pedido.
--- ---------------------------------------------------------------------
 DECLARE
     v_id1   NUMBER;
     v_id2   NUMBER;
@@ -279,10 +232,6 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 12: no se puede cancelar después de 5 minutos.
---            (se simula que el pedido se hizo hace 10 minutos)
--- ---------------------------------------------------------------------
 DECLARE
     v_id  NUMBER;
     v_msg VARCHAR2(400);
@@ -304,23 +253,20 @@ EXCEPTION
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 13: constraints (CHECK y FK) rechazan datos inválidos
--- ---------------------------------------------------------------------
 DECLARE
     v_ok NUMBER := 0;
 BEGIN
     BEGIN
         INSERT INTO producto (id_negocio, id_categoria, nombre, precio) VALUES (1, 1, 'Precio negativo', -5);
-    EXCEPTION WHEN OTHERS THEN v_ok := v_ok + 1;   -- CH_PRODUCTO_PRECIO
+    EXCEPTION WHEN OTHERS THEN v_ok := v_ok + 1;
     END;
     BEGIN
         INSERT INTO zona (id_municipio, nombre) VALUES (999, 'Zona inexistente');
-    EXCEPTION WHEN OTHERS THEN v_ok := v_ok + 1;   -- FK_ZONA_MUNI
+    EXCEPTION WHEN OTHERS THEN v_ok := v_ok + 1;
     END;
     BEGIN
         INSERT INTO horario_negocio (id_negocio, dia_semana, hora_apertura, hora_cierre) VALUES (2, 8, '08:00', '17:00');
-    EXCEPTION WHEN OTHERS THEN v_ok := v_ok + 1;   -- CH_HORARIO_DIA
+    EXCEPTION WHEN OTHERS THEN v_ok := v_ok + 1;
     END;
     ROLLBACK;
     IF v_ok = 3 THEN
@@ -331,9 +277,6 @@ BEGIN
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 14: la bitácora registra las operaciones
--- ---------------------------------------------------------------------
 DECLARE
     v_eventos NUMBER;
 BEGIN
@@ -347,10 +290,6 @@ BEGIN
 END;
 /
 
--- ---------------------------------------------------------------------
--- Prueba 15: optimización de ruta y tiempo estimado de llegada
---   ASIGNADO: la ruta es repartidor -> negocio -> cliente
--- ---------------------------------------------------------------------
 DECLARE
     v_id_pedido NUMBER;
     v_ruta      NUMBER;
@@ -381,7 +320,6 @@ EXCEPTION
 END;
 /
 
--- Resumen de los reportes estadísticos con los datos de prueba
 SELECT repartidor, SUM(entregas) AS entregas
   FROM vw_rep_entregas_area
  GROUP BY repartidor

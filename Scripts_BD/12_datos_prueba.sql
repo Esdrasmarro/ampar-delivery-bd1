@@ -1,17 +1,4 @@
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Script 12: datos de prueba (Ciudad de Guatemala)
--- Ejecutar conectado como: AMPAR (después de los scripts 10 y 11)
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
--- Los nombres de negocios y personas son ficticios.
--- Las coordenadas son aproximadas a cada zona de la ciudad.
--- Contraseña de todos los usuarios de prueba: Ampar2026
-
--- ---------------------------------------------------------------------
--- Negocios afiliados (id 1 a 7). El 7 es una solicitud PENDIENTE.
--- Zonas: Zona N de la ciudad = id N (ver script 10). Mixco Zona 1 = id 29.
--- ---------------------------------------------------------------------
+-- Script 12: datos de prueba. Ejecutar como AMPAR
 INSERT INTO negocio (id_tipo_negocio, id_zona, nombre, nit, propietario, telefono, correo, direccion, latitud, longitud, radio_cobertura_km, estado)
 VALUES (1, 1, 'Repuestos El Pistón', '1234567-1', 'Roberto García', '22301001', 'elpiston@ampar.com', '6a. Avenida 15-20, Zona 1', 14.640700, -90.513300, 10, 'ACTIVO');
 INSERT INTO negocio (id_tipo_negocio, id_zona, nombre, nit, propietario, telefono, correo, direccion, latitud, longitud, radio_cobertura_km, estado)
@@ -27,44 +14,29 @@ VALUES (4, 7, 'Comedor Doña Chepita', '6789012-6', 'Josefina Pérez', '22301006
 INSERT INTO negocio (id_tipo_negocio, id_zona, nombre, nit, propietario, telefono, correo, direccion, latitud, longitud, radio_cobertura_km, estado)
 VALUES (5, 29, 'Farmacia Buena Salud', '7890123-7', 'Luis Monterroso', '22301007', 'buenasalud@ampar.com', 'Calzada Roosevelt km 14, Mixco', 14.633000, -90.606400, 10, 'PENDIENTE');
 
--- ---------------------------------------------------------------------
--- Horarios y días de entrega (1 = lunes ... 7 = domingo)
--- ---------------------------------------------------------------------
 BEGIN
     FOR v_dia IN 1 .. 7 LOOP
-        -- 1 El Pistón: abierto las 24 horas todos los días (útil para hacer pruebas a cualquier hora)
         INSERT INTO horario_negocio (id_negocio, dia_semana, hora_apertura, hora_cierre, hace_entrega)
         VALUES (1, v_dia, '00:00', '23:59', 'S');
 
-        -- 2 La Bujía: lunes a sábado de 07:00 a 19:00, domingo no entrega
         INSERT INTO horario_negocio (id_negocio, dia_semana, hora_apertura, hora_cierre, hace_entrega)
         VALUES (2, v_dia, '07:00', '19:00', CASE WHEN v_dia = 7 THEN 'N' ELSE 'S' END);
 
-        -- 3 Veloz: todos los días de 08:00 a 20:00
         INSERT INTO horario_negocio (id_negocio, dia_semana, hora_apertura, hora_cierre, hace_entrega)
         VALUES (3, v_dia, '08:00', '20:00', 'S');
 
-        -- 4 Del Norte: lunes a sábado de 08:00 a 18:00
         INSERT INTO horario_negocio (id_negocio, dia_semana, hora_apertura, hora_cierre, hace_entrega)
         VALUES (4, v_dia, '08:00', '18:00', CASE WHEN v_dia = 7 THEN 'N' ELSE 'S' END);
 
-        -- 5 Pollo Dorado: todos los días de 10:00 a 22:00
         INSERT INTO horario_negocio (id_negocio, dia_semana, hora_apertura, hora_cierre, hace_entrega)
         VALUES (5, v_dia, '10:00', '22:00', 'S');
 
-        -- 6 Doña Chepita: lunes a viernes de 07:00 a 15:00
         INSERT INTO horario_negocio (id_negocio, dia_semana, hora_apertura, hora_cierre, hace_entrega)
         VALUES (6, v_dia, '07:00', '15:00', CASE WHEN v_dia >= 6 THEN 'N' ELSE 'S' END);
     END LOOP;
 END;
 /
 
--- ---------------------------------------------------------------------
--- Catálogo digital de productos (id 1 a 28)
--- Categorías: 1 Frenos, 2 Motor, 3 Suspensión, 4 Eléctrico, 5 Filtros, 6 Llantas,
---             7 Comida, 8 Bebidas, 9 Medicamentos
--- ---------------------------------------------------------------------
--- Negocio 1: Repuestos El Pistón (id 1 a 7)
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (1, 1, 'Pastillas de freno delanteras', 'Juego de 4 pastillas, cerámica', 285.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (1, 1, 'Disco de freno ventilado', 'Disco delantero 256 mm', 450.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (1, 5, 'Filtro de aceite', 'Rosca 3/4-16', 65.00);
@@ -72,36 +44,28 @@ INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VAL
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (1, 4, 'Bujía de iridio', 'Unidad', 95.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (1, 4, 'Batería 12V 45Ah', 'Libre de mantenimiento, 12 meses de garantía', 895.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (1, 3, 'Amortiguador delantero', 'Unidad, tipo gas', 520.00);
--- Negocio 2: AutoPartes La Bujía (id 8 a 12)
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (2, 2, 'Banda de distribución', 'Kit con tensor', 340.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (2, 2, 'Bomba de agua', 'Con empaque', 610.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (2, 4, 'Faro delantero', 'Lado izquierdo', 760.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (2, 5, 'Filtro de aire', 'Panel', 90.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (2, 6, 'Llanta 185/65 R15', 'Radial', 725.00);
--- Negocio 3: Moto Repuestos Veloz (id 13 a 17)
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (3, 2, 'Kit de arrastre', 'Cadena, piñón y catalina', 395.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (3, 1, 'Pastillas de freno para moto', 'Juego delantero', 120.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (3, 6, 'Llanta para moto 90/90-17', 'Uso urbano', 340.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (3, 5, 'Aceite 4T litro', 'Para motor de 4 tiempos', 75.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (3, 4, 'Batería para moto 12V', '7 Ah', 310.00);
--- Negocio 4: Repuestos y Accesorios del Norte (id 18 a 21)
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (4, 3, 'Terminal de dirección', 'Unidad', 180.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (4, 4, 'Bombilla H4', '12V 60/55W', 45.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (4, 4, 'Fusibles surtidos', 'Caja de 40 piezas', 35.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (4, 1, 'Líquido de frenos DOT4', 'Medio litro', 60.00);
--- Negocio 5: Pollo Dorado Express (id 22 a 25)
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (5, 7, 'Combo 2 piezas', 'Pollo, papas y refresco', 45.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (5, 7, 'Combo familiar 8 piezas', 'Pollo, papas grandes y refresco 1.5 L', 155.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (5, 7, 'Papas grandes', 'Porción grande', 22.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (5, 8, 'Refresco 1.5 litros', 'Sabor a elección', 18.00);
--- Negocio 6: Comedor Doña Chepita (id 26 a 28)
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (6, 7, 'Almuerzo del día', 'Plato del día con tortillas y bebida', 35.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (6, 7, 'Pepián de pollo', 'Con arroz y tortillas', 45.00);
 INSERT INTO producto (id_negocio, id_categoria, nombre, descripcion, precio) VALUES (6, 8, 'Licuado de fruta', 'Vaso de 16 oz', 15.00);
 
--- ---------------------------------------------------------------------
--- Clientes (id 1 a 7) y sus direcciones (id 1 a 9)
--- ---------------------------------------------------------------------
 INSERT INTO cliente (nombres, apellidos, telefono, correo) VALUES ('Ana Lucía', 'Pérez López', '55510001', 'ana.perez@correo.com');
 INSERT INTO cliente (nombres, apellidos, telefono, correo) VALUES ('Carlos Eduardo', 'Méndez Ruiz', '55510002', 'carlos.mendez@correo.com');
 INSERT INTO cliente (nombres, apellidos, telefono, correo) VALUES ('María José', 'Gómez Castañeda', '55510003', 'maria.gomez@correo.com');
@@ -111,28 +75,24 @@ INSERT INTO cliente (nombres, apellidos, telefono, correo) VALUES ('Diego André
 INSERT INTO cliente (nombres, apellidos, telefono, correo) VALUES ('Laura Beatriz', 'Morales Díaz', '55510007', 'laura.morales@correo.com');
 
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (1, 10, 'Casa', '5a. Avenida 10-25, Zona 10', 'Edificio blanco, apto. 302', 14.600000, -90.512000);          -- 1
+VALUES (1, 10, 'Casa', '5a. Avenida 10-25, Zona 10', 'Edificio blanco, apto. 302', 14.600000, -90.512000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (2, 1, 'Casa', '10a. Calle 8-40, Zona 1', 'Portón negro', 14.638000, -90.515000);                             -- 2
+VALUES (2, 1, 'Casa', '10a. Calle 8-40, Zona 1', 'Portón negro', 14.638000, -90.515000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (2, 4, 'Trabajo', 'Vía 5 4-50, Zona 4', 'Oficina 2do. nivel', 14.623000, -90.515000);                          -- 3
+VALUES (2, 4, 'Trabajo', 'Vía 5 4-50, Zona 4', 'Oficina 2do. nivel', 14.623000, -90.515000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (3, 18, 'Casa', 'Colonia Lavarreda, Zona 18', 'Frente a la escuela', 14.662000, -90.488000);                  -- 4 (zona roja)
+VALUES (3, 18, 'Casa', 'Colonia Lavarreda, Zona 18', 'Frente a la escuela', 14.662000, -90.488000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (4, 12, 'Casa', 'Colonia La Reformita, Zona 12', 'Casa esquina', 14.580000, -90.533000);                      -- 5
+VALUES (4, 12, 'Casa', 'Colonia La Reformita, Zona 12', 'Casa esquina', 14.580000, -90.533000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (5, 7, 'Casa', 'Colonia Kaminal Juyú, Zona 7', 'Casa verde', 14.640000, -90.550000);                          -- 6
+VALUES (5, 7, 'Casa', 'Colonia Kaminal Juyú, Zona 7', 'Casa verde', 14.640000, -90.550000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (6, 6, 'Casa', 'Colonia Cipresales, Zona 6', 'Por la tienda', 14.654000, -90.507000);                         -- 7 (zona roja)
+VALUES (6, 6, 'Casa', 'Colonia Cipresales, Zona 6', 'Por la tienda', 14.654000, -90.507000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (7, 29, 'Casa', 'Colonia El Milagro, Mixco', 'Casa de dos niveles', 14.630000, -90.600000);                   -- 8
+VALUES (7, 29, 'Casa', 'Colonia El Milagro, Mixco', 'Casa de dos niveles', 14.630000, -90.600000);
 INSERT INTO direccion_cliente (id_cliente, id_zona, nombre, direccion, referencia, latitud, longitud)
-VALUES (7, 36, 'Trabajo', 'Centro de Villa Nueva', 'Fuera de cobertura (más de 10 km)', 14.525000, -90.588000);       -- 9
+VALUES (7, 36, 'Trabajo', 'Centro de Villa Nueva', 'Fuera de cobertura (más de 10 km)', 14.525000, -90.588000);
 
--- ---------------------------------------------------------------------
--- Repartidores de Ampar (id 1 a 8) con su ubicación actual
--- Tipo de vehículo: 1 Motocicleta, 2 Automóvil, 3 Pickup, 4 Bicicleta
--- ---------------------------------------------------------------------
 INSERT INTO repartidor (id_tipo_vehiculo, nombres, apellidos, dpi, telefono, licencia, placa, latitud, longitud, fecha_ubicacion)
 VALUES (1, 'Pedro', 'Xicará Tum', '2501123450101', '44410001', 'M-250112345', 'M123ABC', 14.635000, -90.514000, SYSDATE);
 INSERT INTO repartidor (id_tipo_vehiculo, nombres, apellidos, dpi, telefono, licencia, placa, latitud, longitud, fecha_ubicacion)
@@ -150,24 +110,18 @@ VALUES (3, 'Josué', 'Chávez Orellana', '2507789010101', '44410007', 'A-2507789
 INSERT INTO repartidor (id_tipo_vehiculo, nombres, apellidos, dpi, telefono, licencia, placa, latitud, longitud, fecha_ubicacion)
 VALUES (1, 'Brayan', 'López Ajanel', '2508890120101', '44410008', 'M-250889012', 'M890HIJ', 14.645000, -90.470000, SYSDATE);
 
--- ---------------------------------------------------------------------
--- Usuarios de negocios, repartidores y clientes (rol: 3 NEGOCIO, 4 REPARTIDOR, 5 CLIENTE)
--- ---------------------------------------------------------------------
 BEGIN
-    -- negocios activos: el usuario es el correo del negocio
     FOR n IN (SELECT id_negocio, correo, nombre FROM negocio WHERE estado = 'ACTIVO') LOOP
         INSERT INTO usuario (id_rol, nombre_usuario, clave, nombre_completo, id_negocio)
         VALUES (3, n.correo, fn_encriptar('Ampar2026'), n.nombre, n.id_negocio);
     END LOOP;
 
-    -- repartidores: repartidor1, repartidor2, ...
     FOR r IN (SELECT id_repartidor, nombres, apellidos FROM repartidor) LOOP
         INSERT INTO usuario (id_rol, nombre_usuario, clave, nombre_completo, id_repartidor)
         VALUES (4, 'repartidor' || r.id_repartidor, fn_encriptar('Ampar2026'),
                 r.nombres || ' ' || r.apellidos, r.id_repartidor);
     END LOOP;
 
-    -- clientes: el usuario es su correo
     FOR c IN (SELECT id_cliente, correo, nombres, apellidos FROM cliente) LOOP
         INSERT INTO usuario (id_rol, nombre_usuario, clave, nombre_completo, id_cliente)
         VALUES (5, c.correo, fn_encriptar('Ampar2026'), c.nombres || ' ' || c.apellidos, c.id_cliente);
@@ -177,11 +131,6 @@ END;
 
 COMMIT;
 
--- ---------------------------------------------------------------------
--- Historial de pedidos de los últimos 30 días (para consultas y reportes)
--- Se generan con un ciclo: pedidos ENTREGADOS con calificación, algunos
--- CANCELADOS por el cliente y algunas entregas canceladas por repartidores.
--- ---------------------------------------------------------------------
 DECLARE
     v_id_pedido  NUMBER;
     v_direccion  NUMBER;
@@ -204,7 +153,6 @@ DECLARE
     v_puntos     NUMBER;
 BEGIN
     FOR i IN 1 .. 90 LOOP
-        -- dirección 1 a 8 (la 9 está fuera de cobertura) y negocio 1 a 6
         v_direccion := MOD(i, 8) + 1;
         v_negocio   := MOD(i * 5, 6) + 1;
 
@@ -216,10 +164,8 @@ BEGIN
          WHERE n.id_negocio = v_negocio
            AND d.id_direccion = v_direccion;
 
-        -- solo pedidos dentro de la cobertura de 10 km
         CONTINUE WHEN v_distancia > 10;
 
-        -- dos productos del negocio
         SELECT MIN(id_producto), MAX(id_producto) INTO v_prod1, v_prod2
           FROM producto WHERE id_negocio = v_negocio;
         SELECT precio INTO v_precio1 FROM producto WHERE id_producto = v_prod1;
@@ -229,21 +175,18 @@ BEGIN
         v_subtotal := v_cant1 * v_precio1 + v_precio2;
         v_total    := v_subtotal + 25;
 
-        -- repartidor: algunos hacen más entregas que otros
         v_repartidor := CASE WHEN MOD(i, 5) = 0 THEN 1
                              WHEN MOD(i, 4) = 0 THEN 4
                              ELSE MOD(i, 8) + 1 END;
 
-        -- cada 9 pedidos uno fue cancelado por el cliente (pagado con tarjeta)
         IF MOD(i, 9) = 0 THEN
-            v_estado := 6;      -- CANCELADO
-            v_metodo := 2;      -- tarjeta
+            v_estado := 6;
+            v_metodo := 2;
         ELSE
-            v_estado := 5;      -- ENTREGADO
+            v_estado := 5;
             v_metodo := MOD(i, 2) + 1;
         END IF;
 
-        -- fecha: uno de los últimos 30 días, entre las 10:00 y las 18:00
         v_fecha := TRUNC(SYSDATE) - MOD(i * 7, 30) - 1 + (10 + MOD(i, 9)) / 24;
 
         INSERT INTO pedido (id_cliente, id_negocio, id_direccion, id_metodo_pago, id_estado_pedido,
@@ -259,21 +202,18 @@ BEGIN
         INSERT INTO detalle_pedido (id_pedido, linea, id_producto, cantidad, precio_unitario, subtotal)
         VALUES (v_id_pedido, 2, v_prod2, 1, v_precio2, v_precio2);
 
-        -- pago (tarjeta al pedir o efectivo al entregar)
         INSERT INTO pago (id_pedido, tipo, monto, fecha_pago, ultimos4, autorizacion)
         VALUES (v_id_pedido, 'PAGO', v_total, v_fecha + 1/24,
                 CASE WHEN v_metodo = 2 THEN '1111' END,
                 CASE WHEN v_metodo = 2 THEN 'AUT-HIST-' || i END);
 
         IF v_estado = 6 THEN
-            -- cancelación del cliente: cobro del 15 % y reembolso del resto
             v_cobro := ROUND(v_total * 15 / 100, 2);
             INSERT INTO cancelacion_pedido (id_pedido, id_motivo, fecha, porcentaje, monto_cobro, monto_reembolso, estado_cargo)
             VALUES (v_id_pedido, MOD(i, 3) + 1, v_fecha + 3/1440, 15, v_cobro, v_total - v_cobro, 'COBRADO');
             INSERT INTO pago (id_pedido, tipo, monto, fecha_pago)
             VALUES (v_id_pedido, 'REEMBOLSO', v_total - v_cobro, v_fecha + 3/1440);
         ELSE
-            -- 3 de cada 4 entregas tienen calificación (el repartidor 7 tiene notas más bajas)
             IF MOD(i, 4) <> 3 THEN
                 v_puntos := CASE WHEN v_repartidor = 7 THEN 2 + MOD(i, 2) ELSE 4 + MOD(i, 2) END;
                 INSERT INTO calificacion (id_pedido, puntuacion, comentario, fecha)
@@ -285,7 +225,6 @@ BEGIN
                         v_fecha + 2/24);
             END IF;
 
-            -- algunas entregas fueron canceladas antes por otro repartidor (7 y 3 cancelan más)
             IF MOD(i, 6) = 0 OR MOD(i, 7) = 0 THEN
                 v_rep_cancela := CASE WHEN MOD(i, 2) = 0 THEN 7 ELSE 3 END;
                 IF v_rep_cancela = v_repartidor THEN
@@ -296,8 +235,6 @@ BEGIN
             END IF;
         END IF;
 
-        -- el trigger guardó el historial y las notificaciones con la fecha de hoy;
-        -- se ajustan a la fecha del pedido histórico
         UPDATE historial_estado SET fecha = v_fecha + 1/24 WHERE id_pedido = v_id_pedido;
         UPDATE notificacion SET fecha_envio = v_fecha + 1/24 WHERE id_pedido = v_id_pedido;
     END LOOP;

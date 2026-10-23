@@ -1,14 +1,4 @@
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Script 09: roles de la base de datos y sus privilegios (DCL: CREATE ROLE, GRANT)
--- Ejecutar conectado como: AMPAR
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
-
--- Un rol agrupa privilegios. Luego el rol se otorga a los usuarios de la base de datos
--- (script 14_usuarios_bd.sql). Los nombres coinciden con los roles de la aplicación.
-
--- ROL_ADMINISTRADOR: Acceso total: todas las tablas, vistas, funciones, procedimientos y paquetes.
+-- Script 09: roles. Ejecutar como AMPAR
 CREATE ROLE ROL_ADMINISTRADOR;
 GRANT SELECT, INSERT, UPDATE, DELETE ON departamento TO ROL_ADMINISTRADOR;
 GRANT SELECT, INSERT, UPDATE, DELETE ON municipio TO ROL_ADMINISTRADOR;
@@ -70,7 +60,6 @@ GRANT EXECUTE ON fn_minutos_estimados TO ROL_ADMINISTRADOR;
 GRANT EXECUTE ON pr_bitacora TO ROL_ADMINISTRADOR;
 GRANT EXECUTE ON pr_actualizar_ubicacion TO ROL_ADMINISTRADOR;
 
--- ROL_OPERADOR: Despacho: consulta catálogos y pedidos, administra repartidores y asigna pedidos.
 CREATE ROLE ROL_OPERADOR;
 GRANT SELECT ON departamento TO ROL_OPERADOR;
 GRANT SELECT ON municipio TO ROL_OPERADOR;
@@ -96,7 +85,6 @@ GRANT SELECT ON vw_cancelacion_pedido TO ROL_OPERADOR;
 GRANT SELECT ON vw_calificacion TO ROL_OPERADOR;
 GRANT EXECUTE ON pkg_despacho TO ROL_OPERADOR;
 
--- ROL_NEGOCIO: Negocio afiliado: mantiene su catálogo de productos y sus horarios; consulta sus pedidos.
 CREATE ROLE ROL_NEGOCIO;
 GRANT SELECT, INSERT, UPDATE ON producto TO ROL_NEGOCIO;
 GRANT SELECT, INSERT, UPDATE ON horario_negocio TO ROL_NEGOCIO;
@@ -104,7 +92,6 @@ GRANT SELECT ON categoria_producto TO ROL_NEGOCIO;
 GRANT SELECT ON vw_pedido TO ROL_NEGOCIO;
 GRANT EXECUTE ON pkg_negocio TO ROL_NEGOCIO;
 
--- ROL_REPARTIDOR: Repartidor: consulta su entrega, cambia estados y actualiza su ubicación.
 CREATE ROLE ROL_REPARTIDOR;
 GRANT SELECT ON vw_pedido TO ROL_REPARTIDOR;
 GRANT SELECT ON vw_calificacion TO ROL_REPARTIDOR;
@@ -112,7 +99,6 @@ GRANT SELECT ON motivo_cancelacion TO ROL_REPARTIDOR;
 GRANT EXECUTE ON pkg_despacho TO ROL_REPARTIDOR;
 GRANT EXECUTE ON pr_actualizar_ubicacion TO ROL_REPARTIDOR;
 
--- ROL_CLIENTE: Cliente: consulta negocios y catálogos, hace, paga, cancela y califica pedidos.
 CREATE ROLE ROL_CLIENTE;
 GRANT SELECT ON vw_catalogo_producto TO ROL_CLIENTE;
 GRANT SELECT ON vw_negocio_horario TO ROL_CLIENTE;
@@ -122,7 +108,6 @@ GRANT SELECT, INSERT, UPDATE ON direccion_cliente TO ROL_CLIENTE;
 GRANT SELECT ON motivo_cancelacion TO ROL_CLIENTE;
 GRANT EXECUTE ON pkg_pedido TO ROL_CLIENTE;
 
--- ROL_GERENCIA: Gerencia: solo consulta de reportes, dashboard y consultas generales.
 CREATE ROLE ROL_GERENCIA;
 GRANT SELECT ON vw_rep_entregas_area TO ROL_GERENCIA;
 GRANT SELECT ON vw_rep_cancelaciones_repartidor TO ROL_GERENCIA;

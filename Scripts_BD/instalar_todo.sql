@@ -1,10 +1,4 @@
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Instalador: ejecuta en orden los scripts 01 a 12
--- Ejecutar conectado como: AMPAR, con F5 (Ejecutar script).
--- Todos los scripts deben estar en la misma carpeta que este archivo.
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
+-- Instalador de los scripts 01 a 12. Ejecutar como AMPAR
 SET DEFINE OFF
 SET SERVEROUTPUT ON
 

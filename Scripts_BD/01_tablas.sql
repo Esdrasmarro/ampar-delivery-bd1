@@ -1,14 +1,4 @@
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Script 01: creación de tablas con sus constraints (PK, FK, UK, CHECK, NOT NULL)
--- Ejecutar conectado como: AMPAR
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
-
--- Las tablas se crean en orden: primero las tablas padre y luego las hijas.
-
-
--- DEPARTAMENTO: Departamentos del país (se cargan los 22; la operación está en Guatemala).
+-- Script 01: tablas. Ejecutar como AMPAR
 CREATE TABLE departamento (
     id_departamento  NUMBER(10) NOT NULL,
     nombre           VARCHAR2(60) NOT NULL,
@@ -18,7 +8,6 @@ CREATE TABLE departamento (
     CONSTRAINT CH_DEPTO_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- MUNICIPIO: Municipios de cada departamento (17 del departamento de Guatemala).
 CREATE TABLE municipio (
     id_municipio     NUMBER(10) NOT NULL,
     id_departamento  NUMBER(10) NOT NULL,
@@ -30,7 +19,6 @@ CREATE TABLE municipio (
     CONSTRAINT CH_MUNI_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- ZONA: Zonas de cada municipio. Indica si la zona es roja.
 CREATE TABLE zona (
     id_zona       NUMBER(10) NOT NULL,
     id_municipio  NUMBER(10) NOT NULL,
@@ -45,7 +33,6 @@ CREATE TABLE zona (
     CONSTRAINT CH_ZONA_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- TIPO_NEGOCIO: Tipos de negocio que se pueden afiliar.
 CREATE TABLE tipo_negocio (
     id_tipo_negocio  NUMBER(10) NOT NULL,
     nombre           VARCHAR2(50) NOT NULL,
@@ -56,7 +43,6 @@ CREATE TABLE tipo_negocio (
     CONSTRAINT CH_TIPO_NEG_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- NEGOCIO: Negocios afiliados a Ampar que publican su catálogo digital.
 CREATE TABLE negocio (
     id_negocio          NUMBER(10) NOT NULL,
     id_tipo_negocio     NUMBER(10) NOT NULL,
@@ -80,7 +66,6 @@ CREATE TABLE negocio (
     CONSTRAINT CH_NEGOCIO_ESTADO CHECK (estado IN ('PENDIENTE','ACTIVO','RECHAZADO','INACTIVO'))
 );
 
--- HORARIO_NEGOCIO: Horario de atención y días de entrega de cada negocio.
 CREATE TABLE horario_negocio (
     id_horario     NUMBER(10) NOT NULL,
     id_negocio     NUMBER(10) NOT NULL,
@@ -96,7 +81,6 @@ CREATE TABLE horario_negocio (
     CONSTRAINT CH_HORARIO_ENTREGA CHECK (hace_entrega IN ('S','N'))
 );
 
--- CATEGORIA_PRODUCTO: Categorías para clasificar los productos del catálogo digital.
 CREATE TABLE categoria_producto (
     id_categoria  NUMBER(10) NOT NULL,
     nombre        VARCHAR2(50) NOT NULL,
@@ -107,7 +91,6 @@ CREATE TABLE categoria_producto (
     CONSTRAINT CH_CATEG_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- PRODUCTO: Productos del catálogo digital de cada negocio.
 CREATE TABLE producto (
     id_producto   NUMBER(10) NOT NULL,
     id_negocio    NUMBER(10) NOT NULL,
@@ -125,7 +108,6 @@ CREATE TABLE producto (
     CONSTRAINT CH_PRODUCTO_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- CLIENTE: Clientes que compran en línea.
 CREATE TABLE cliente (
     id_cliente      NUMBER(10) NOT NULL,
     nombres         VARCHAR2(60) NOT NULL,
@@ -139,7 +121,6 @@ CREATE TABLE cliente (
     CONSTRAINT CH_CLIENTE_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- DIRECCION_CLIENTE: Direcciones de entrega de cada cliente.
 CREATE TABLE direccion_cliente (
     id_direccion  NUMBER(10) NOT NULL,
     id_cliente    NUMBER(10) NOT NULL,
@@ -156,7 +137,6 @@ CREATE TABLE direccion_cliente (
     CONSTRAINT CH_DIRECCION_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- TIPO_VEHICULO: Tipos de vehículo de los repartidores.
 CREATE TABLE tipo_vehiculo (
     id_tipo_vehiculo  NUMBER(10) NOT NULL,
     nombre            VARCHAR2(40) NOT NULL,
@@ -166,7 +146,6 @@ CREATE TABLE tipo_vehiculo (
     CONSTRAINT CH_TIPO_VEH_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- REPARTIDOR: Repartidores (conductores) de Ampar y su última ubicación.
 CREATE TABLE repartidor (
     id_repartidor     NUMBER(10) NOT NULL,
     id_tipo_vehiculo  NUMBER(10) NOT NULL,
@@ -188,7 +167,6 @@ CREATE TABLE repartidor (
     CONSTRAINT CH_REPARTIDOR_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- METODO_PAGO: Métodos de pago: efectivo al recibir y tarjeta en línea.
 CREATE TABLE metodo_pago (
     id_metodo_pago  NUMBER(10) NOT NULL,
     nombre          VARCHAR2(40) NOT NULL,
@@ -200,7 +178,6 @@ CREATE TABLE metodo_pago (
     CONSTRAINT CH_MET_PAGO_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- ESTADO_PEDIDO: Estados por los que pasa un pedido.
 CREATE TABLE estado_pedido (
     id_estado_pedido  NUMBER(10) NOT NULL,
     nombre            VARCHAR2(20) NOT NULL,
@@ -209,7 +186,6 @@ CREATE TABLE estado_pedido (
     CONSTRAINT UK_EST_PED_NOMBRE UNIQUE (nombre)
 );
 
--- MOTIVO_CANCELACION: Motivos para cancelar un pedido (cliente) o una entrega (repartidor).
 CREATE TABLE motivo_cancelacion (
     id_motivo    NUMBER(10) NOT NULL,
     descripcion  VARCHAR2(100) NOT NULL,
@@ -220,7 +196,6 @@ CREATE TABLE motivo_cancelacion (
     CONSTRAINT CH_MOTIVO_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- PARAMETRO: Valores configurables del sistema.
 CREATE TABLE parametro (
     id_parametro  NUMBER(10) NOT NULL,
     codigo        VARCHAR2(30) NOT NULL,
@@ -230,7 +205,6 @@ CREATE TABLE parametro (
     CONSTRAINT UK_PARAMETRO_CODIGO UNIQUE (codigo)
 );
 
--- PEDIDO: Encabezado del pedido en línea (gestión centralizada de órdenes).
 CREATE TABLE pedido (
     id_pedido         NUMBER(10) NOT NULL,
     id_cliente        NUMBER(10) NOT NULL,
@@ -261,7 +235,6 @@ CREATE TABLE pedido (
     CONSTRAINT CH_PEDIDO_ESTADO_PAGO CHECK (estado_pago IN ('PENDIENTE','PAGADO','ANULADO'))
 );
 
--- DETALLE_PEDIDO: Productos de cada pedido (una línea por producto).
 CREATE TABLE detalle_pedido (
     id_pedido        NUMBER(10) NOT NULL,
     linea            NUMBER(3) NOT NULL,
@@ -278,7 +251,6 @@ CREATE TABLE detalle_pedido (
     CONSTRAINT CH_DETALLE_SUBTOTAL CHECK (subtotal = cantidad * precio_unitario)
 );
 
--- PAGO: Pagos y reembolsos de los pedidos (tarjeta en línea o efectivo al recibir).
 CREATE TABLE pago (
     id_pago       NUMBER(10) NOT NULL,
     id_pedido     NUMBER(10) NOT NULL,
@@ -293,7 +265,6 @@ CREATE TABLE pago (
     CONSTRAINT CH_PAGO_MONTO CHECK (monto > 0)
 );
 
--- HISTORIAL_ESTADO: Historial de estados del pedido (tracking) con fecha, hora y ubicación.
 CREATE TABLE historial_estado (
     id_historial      NUMBER(10) NOT NULL,
     id_pedido         NUMBER(10) NOT NULL,
@@ -307,7 +278,6 @@ CREATE TABLE historial_estado (
     CONSTRAINT FK_HISTORIAL_EST_PED FOREIGN KEY (id_estado_pedido) REFERENCES estado_pedido (id_estado_pedido)
 );
 
--- CANCELACION_PEDIDO: Cancelaciones hechas por el cliente dentro de los 5 minutos, con el cobro del 15 %.
 CREATE TABLE cancelacion_pedido (
     id_cancelacion      NUMBER(10) NOT NULL,
     id_pedido           NUMBER(10) NOT NULL,
@@ -327,7 +297,6 @@ CREATE TABLE cancelacion_pedido (
     CONSTRAINT CH_CANC_PED_ESTADO CHECK (estado_cargo IN ('COBRADO','PENDIENTE','APLICADO'))
 );
 
--- CANCELACION_ENTREGA: Entregas canceladas por los repartidores (para el control de conductores que cancelan).
 CREATE TABLE cancelacion_entrega (
     id_cancelacion_entrega  NUMBER(10) NOT NULL,
     id_pedido               NUMBER(10) NOT NULL,
@@ -341,7 +310,6 @@ CREATE TABLE cancelacion_entrega (
     CONSTRAINT FK_CANC_ENT_MOTIVO FOREIGN KEY (id_motivo) REFERENCES motivo_cancelacion (id_motivo)
 );
 
--- CALIFICACION: Calificación y comentario del cliente al repartidor de un pedido entregado.
 CREATE TABLE calificacion (
     id_calificacion  NUMBER(10) NOT NULL,
     id_pedido        NUMBER(10) NOT NULL,
@@ -354,7 +322,6 @@ CREATE TABLE calificacion (
     CONSTRAINT CH_CALIF_PUNTUACION CHECK (puntuacion BETWEEN 1 AND 5)
 );
 
--- NOTIFICACION: Notificaciones automáticas por SMS y WhatsApp (simuladas).
 CREATE TABLE notificacion (
     id_notificacion  NUMBER(10) NOT NULL,
     id_pedido        NUMBER(10) NOT NULL,
@@ -369,7 +336,6 @@ CREATE TABLE notificacion (
     CONSTRAINT CH_NOTIF_ESTADO CHECK (estado IN ('ENVIADA'))
 );
 
--- ROL: Roles de la aplicación.
 CREATE TABLE rol (
     id_rol       NUMBER(10) NOT NULL,
     nombre       VARCHAR2(30) NOT NULL,
@@ -380,7 +346,6 @@ CREATE TABLE rol (
     CONSTRAINT CH_ROL_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- MODULO: Módulos del sistema (agrupan las opciones del menú).
 CREATE TABLE modulo (
     id_modulo  NUMBER(10) NOT NULL,
     nombre     VARCHAR2(40) NOT NULL,
@@ -391,7 +356,6 @@ CREATE TABLE modulo (
     CONSTRAINT CH_MODULO_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- MENU: Opciones del menú (páginas) de cada módulo.
 CREATE TABLE menu (
     id_menu    NUMBER(10) NOT NULL,
     id_modulo  NUMBER(10) NOT NULL,
@@ -405,7 +369,6 @@ CREATE TABLE menu (
     CONSTRAINT CH_MENU_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- ROL_MENU: Permisos: opciones de menú asignadas a cada rol (relación N-N).
 CREATE TABLE rol_menu (
     id_rol   NUMBER(10) NOT NULL,
     id_menu  NUMBER(10) NOT NULL,
@@ -414,7 +377,6 @@ CREATE TABLE rol_menu (
     CONSTRAINT FK_ROL_MENU_MENU FOREIGN KEY (id_menu) REFERENCES menu (id_menu)
 );
 
--- USUARIO: Usuarios de la aplicación con su clave encriptada.
 CREATE TABLE usuario (
     id_usuario       NUMBER(10) NOT NULL,
     id_rol           NUMBER(10) NOT NULL,
@@ -438,7 +400,6 @@ CREATE TABLE usuario (
     CONSTRAINT CH_USUARIO_ESTADO CHECK (estado IN ('A','I'))
 );
 
--- BITACORA: Bitácora de eventos para auditoría (la llenan los triggers).
 CREATE TABLE bitacora (
     id_bitacora     NUMBER(10) NOT NULL,
     usuario         VARCHAR2(50) NOT NULL,
@@ -451,4 +412,3 @@ CREATE TABLE bitacora (
     CONSTRAINT PK_BITACORA PRIMARY KEY (id_bitacora),
     CONSTRAINT CH_BITACORA_OPERACION CHECK (operacion IN ('INSERT','UPDATE','DELETE','LOGIN','LOGIN_FALLIDO'))
 );
-

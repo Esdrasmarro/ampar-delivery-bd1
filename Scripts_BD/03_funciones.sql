@@ -1,16 +1,4 @@
--- =====================================================================
--- Proyecto Final Base de Datos 1 - Sistema de Control de Delivery "Ampar"
--- Script 03: funciones
--- Ejecutar conectado como: AMPAR
--- Estudiante: Esdras Lemuel Marroquín Rojas - Carné 3190-13-13335
--- =====================================================================
--- Una función recibe parámetros, hace un cálculo o una consulta y DEVUELVE un valor.
--- Se pueden usar dentro de un SELECT, de un procedimiento o de un paquete.
-
--- ---------------------------------------------------------------------
--- fn_parametro: devuelve el valor de un parámetro del sistema
--- Ejemplo: fn_parametro('TARIFA_ENVIO') -> 25
--- ---------------------------------------------------------------------
+-- Script 03: funciones. Ejecutar como AMPAR
 CREATE OR REPLACE FUNCTION fn_parametro (
     p_codigo IN VARCHAR2
 ) RETURN NUMBER
@@ -29,11 +17,6 @@ EXCEPTION
 END fn_parametro;
 /
 
--- ---------------------------------------------------------------------
--- fn_distancia_km: distancia en kilómetros entre dos puntos (latitud, longitud)
--- usando la fórmula de Haversine (radio de la Tierra = 6371 km).
--- Se usa para elegir al repartidor más cercano y validar la cobertura.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_distancia_km (
     p_lat1 IN NUMBER,
     p_lon1 IN NUMBER,
@@ -51,7 +34,6 @@ BEGIN
         RETURN NULL;
     END IF;
 
-    -- diferencias en radianes
     v_dlat := (p_lat2 - p_lat1) * c_pi / 180;
     v_dlon := (p_lon2 - p_lon1) * c_pi / 180;
 
@@ -62,10 +44,6 @@ BEGIN
 END fn_distancia_km;
 /
 
--- ---------------------------------------------------------------------
--- fn_encriptar: encripta una contraseña con el algoritmo SHA-256.
--- Devuelve 64 caracteres hexadecimales. La contraseña nunca se guarda en texto plano.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_encriptar (
     p_clave IN VARCHAR2
 ) RETURN VARCHAR2
@@ -80,24 +58,15 @@ BEGIN
 END fn_encriptar;
 /
 
--- ---------------------------------------------------------------------
--- fn_dia_semana: número del día de la semana (1 = lunes ... 7 = domingo)
--- No depende de la configuración regional de Oracle.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_dia_semana (
     p_fecha IN DATE
 ) RETURN NUMBER
 IS
 BEGIN
-    -- TRUNC(fecha, 'IW') devuelve el lunes de esa semana
     RETURN TRUNC(p_fecha) - TRUNC(p_fecha, 'IW') + 1;
 END fn_dia_semana;
 /
 
--- ---------------------------------------------------------------------
--- fn_negocio_abierto: 'S' si el negocio está ACTIVO, atiende a esa hora
--- y ese día hace entregas; 'N' en caso contrario.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_negocio_abierto (
     p_id_negocio IN NUMBER,
     p_fecha      IN DATE DEFAULT SYSDATE
@@ -125,10 +94,6 @@ BEGIN
 END fn_negocio_abierto;
 /
 
--- ---------------------------------------------------------------------
--- fn_id_estado: devuelve el id de un estado de pedido a partir de su nombre
--- Ejemplo: fn_id_estado('ENTREGADO') -> 5
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_id_estado (
     p_nombre IN VARCHAR2
 ) RETURN NUMBER
@@ -147,12 +112,6 @@ EXCEPTION
 END fn_id_estado;
 /
 
--- ---------------------------------------------------------------------
--- fn_validar_tarjeta: pasarela de pagos SIMULADA.
--- Reglas: 16 dígitos y fecha de vencimiento vigente = APROBADA.
---         La tarjeta de prueba 4000 0000 0000 0002 siempre es RECHAZADA
---         (fondos insuficientes). La 4111 1111 1111 1111 se aprueba.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_validar_tarjeta (
     p_numero IN VARCHAR2,
     p_mes    IN NUMBER,
@@ -163,7 +122,6 @@ IS
     v_anio   NUMBER := p_anio;
     v_vence  DATE;
 BEGIN
-    -- quitar espacios y guiones
     v_numero := REPLACE(REPLACE(p_numero, ' ', ''), '-', '');
 
     IF v_numero IS NULL OR NOT REGEXP_LIKE(v_numero, '^[0-9]{16}$') THEN
@@ -179,10 +137,9 @@ BEGIN
     END IF;
 
     IF v_anio < 100 THEN
-        v_anio := v_anio + 2000;  -- año escrito con dos dígitos (ej. 28)
+        v_anio := v_anio + 2000;
     END IF;
 
-    -- la tarjeta vence el último día del mes indicado
     v_vence := LAST_DAY(TO_DATE(TO_CHAR(v_anio) || LPAD(TO_CHAR(p_mes), 2, '0'), 'YYYYMM'));
 
     IF v_vence < TRUNC(SYSDATE) THEN
@@ -193,11 +150,6 @@ BEGIN
 END fn_validar_tarjeta;
 /
 
--- ---------------------------------------------------------------------
--- fn_cargo_pendiente: suma de los cargos por cancelación (15 %) que el
--- cliente tiene pendientes por pedidos en efectivo que canceló.
--- Ese monto se suma al total de su siguiente pedido.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_cargo_pendiente (
     p_id_cliente IN NUMBER
 ) RETURN NUMBER
@@ -215,9 +167,6 @@ BEGIN
 END fn_cargo_pendiente;
 /
 
--- ---------------------------------------------------------------------
--- fn_promedio_repartidor: calificación promedio (1 a 5) de un repartidor
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_promedio_repartidor (
     p_id_repartidor IN NUMBER
 ) RETURN NUMBER
@@ -234,16 +183,6 @@ BEGIN
 END fn_promedio_repartidor;
 /
 
--- ---------------------------------------------------------------------
--- fn_ruta_km: optimización de la ruta del repartidor para un pedido.
--- La ruta más corta para entregar es ir primero al negocio a recoger y
--- luego directo al cliente. Se calcula con Haversine (fn_distancia_km):
---   ASIGNADO            : repartidor -> negocio -> cliente
---   RECOGIDO o EN RUTA  : repartidor -> cliente
---   otros estados       : NULL (no hay ruta activa)
--- Como la asignación automática elige al repartidor más cercano al negocio,
--- también se elige la ruta total más corta.
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_ruta_km (
     p_id_pedido IN NUMBER
 ) RETURN NUMBER
@@ -279,11 +218,6 @@ EXCEPTION
 END fn_ruta_km;
 /
 
--- ---------------------------------------------------------------------
--- fn_minutos_estimados: tiempo estimado de llegada (en minutos) para
--- recorrer una distancia, con la velocidad promedio del parámetro
--- VELOCIDAD_PROMEDIO (km/h).
--- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_minutos_estimados (
     p_km IN NUMBER
 ) RETURN NUMBER
